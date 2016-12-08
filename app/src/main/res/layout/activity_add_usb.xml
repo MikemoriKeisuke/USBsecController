@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="認証"
+            android:text="新規USBsec追加"
             android:textSize="30sp" />
 
         <FrameLayout

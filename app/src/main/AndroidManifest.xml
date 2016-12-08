@@ -38,7 +38,8 @@
             android:name=".SearchMapActivity"
             android:label="@string/title_activity_search_map" />
         <activity android:name=".AddUsbActivity" />
-        <activity android:name=".ConnectionActivity"></activity>
+        <activity android:name=".ConnectionActivity" />
+        <activity android:name=".DisconnectActivity"></activity>
     </application>
 
 </manifest>

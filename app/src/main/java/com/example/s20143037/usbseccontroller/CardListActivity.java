@@ -3,6 +3,7 @@ package com.example.s20143037.usbseccontroller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -47,6 +48,11 @@ public class CardListActivity extends AppCompatActivity {
 
     public void intentSearchMap(View v) {
         Intent intent = new Intent(getApplication(), SearchMapActivity.class);
+        startActivity(intent);
+    }
+
+    public void intentAddUsb(View v) {
+        Intent intent = new Intent(getApplication(), AddUsbActivity.class);
         startActivity(intent);
     }
 
