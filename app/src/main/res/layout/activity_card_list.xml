@@ -8,7 +8,6 @@
     tools:context=".CardListActivity">
 
     <LinearLayout
-        android:id="@+id/recyclerView1"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,7 +23,7 @@
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:paddingBottom="40dp"
             layout="@layout/add_card" />
     </LinearLayout>
 
