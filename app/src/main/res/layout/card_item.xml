@@ -44,7 +44,7 @@
                 android:text="接続"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/connButton"
+                android:id="@+id/IntentConnButton"
                 android:onClick="intentConn"
                 android:layout_weight="1" />
 
@@ -52,7 +52,7 @@
                 android:text="探索"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/searchButton"
+                android:id="@+id/IntentSearchButton"
                 android:onClick="intentSearchMap"
                 android:layout_weight="1" />
         </LinearLayout>

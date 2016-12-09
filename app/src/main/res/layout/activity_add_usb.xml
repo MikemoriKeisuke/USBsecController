@@ -65,10 +65,11 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/AddUsbButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Button"
+            android:onClick="intentAddComp"/>
 
     </LinearLayout>
 
