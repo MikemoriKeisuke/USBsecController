@@ -1,6 +1,9 @@
 package com.example.s20143037.usbseccontroller;
 
+import android.*;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -39,6 +42,7 @@ public class CardListActivity extends AppCompatActivity {
         // アダプタを指定する
         mAdapter = new UsbAdapter(this, myDataSet);
         mRecyclerView.setAdapter(mAdapter);
+        checkPermission();
     }
 
     public void intentConn(View v) {
@@ -54,6 +58,13 @@ public class CardListActivity extends AppCompatActivity {
     public void intentAddUsb(View v) {
         Intent intent = new Intent(getApplication(), AddUsbActivity.class);
         startActivity(intent);
+    }
+
+    public void checkPermission() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+        } else {
+        }
     }
 
 }

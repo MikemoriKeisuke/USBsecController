@@ -97,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="a8efd16a90221d61415d5c891359ec385b823aea">
+        sha1="79c6319d7a0a42ba663e713a5737981c40304041">
         <dex dex="C:\Users\s20143037\AndroidStudioProjects\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_eff77fd2bc02730c49a5afc6b22b93bcd67e9c90\classes.dex" />
     </item>
     <item
@@ -295,7 +295,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="0e87e6bcc4683ead83375508e523b78f698e6b78">
+        sha1="f0e482b45f3f37f3b9375df9cd612e0aef2a0f9c">
         <dex dex="C:\Users\s20143037\AndroidStudioProjects\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_2f1957bcb074d97919b2b77aff642758887dd5b9\classes.dex" />
     </item>
     <item

@@ -33,12 +33,6 @@
             android:layout_gravity="center"
             android:background="@drawable/ic_usb" />
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_circle" />
-
         <TextView
             android:id="@+id/UsbNameView"
             android:layout_width="wrap_content"
@@ -46,7 +40,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:text="text"
-            android:textSize="30sp" />
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:drawableLeft="@drawable/ic_circle"/>
 
         <EditText
             android:id="@+id/editText"
