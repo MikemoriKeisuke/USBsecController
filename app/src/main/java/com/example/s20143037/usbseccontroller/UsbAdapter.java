@@ -10,31 +10,31 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
-    private LayoutInflater mLayoutInflater;
-    private ArrayList<String> mDataList;
+    private LayoutInflater onLayoutInflater;
+    private ArrayList<String> onDataList;
 
     public UsbAdapter(Context context, ArrayList<String> dataList) {
         super();
-        mLayoutInflater = LayoutInflater.from(context);
-        mDataList = dataList;
+        onLayoutInflater = LayoutInflater.from(context);
+        onDataList = dataList;
     }
 
     // getViewのinfrateするところだけ取り出した感じ
     @Override
     public UsbAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = mLayoutInflater.inflate(R.layout.card_item, parent, false);
+        View v = onLayoutInflater.inflate(R.layout.card_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
 
     @Override
     public int getItemCount() {
-        return mDataList.size();
+        return onDataList.size();
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String data = (String) mDataList.get(position);
+        String data = (String) onDataList.get(position);
         holder.text.setText(data);
     }
 
