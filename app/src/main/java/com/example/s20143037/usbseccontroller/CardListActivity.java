@@ -1,10 +1,13 @@
 package com.example.s20143037.usbseccontroller;
 
+import android.*;
+import android.Manifest;
 import android.app.LauncherActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AlertDialog;
@@ -18,18 +21,17 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class CardListActivity extends AppCompatActivity  {
-    private LocationManager locationManager;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
+    private LocationManager nlLocationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list);
-
+        nlLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
-
+        mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
@@ -44,18 +46,11 @@ public class CardListActivity extends AppCompatActivity  {
                 add("USBsec5");
                 add("USBsec6");
                 add("USBsec7");
-
             }
         };
         // アダプタを指定する
         mAdapter = new UsbAdapter(this, DataSet);
         mRecyclerView.setAdapter(mAdapter);
-
-
-//        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-//        LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.add_card, null);
-//        mRecyclerView.addView(linearLayout);
-
 
         checkPermission();
     }
@@ -63,25 +58,49 @@ public class CardListActivity extends AppCompatActivity  {
     public void intentConn(View v) {
         Intent intent = new Intent(getApplication(), ConnectionActivity.class);
         startActivity(intent);
+        overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
     }
 
     public void intentSearchMap(View v) {
         Intent intent = new Intent(getApplication(), SearchMapActivity.class);
         startActivity(intent);
+        overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
     }
 
     public void intentAddUsb(View v) {
         Intent intent = new Intent(getApplication(), AddUsbActivity.class);
         startActivity(intent);
+        overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
     }
 
     public void checkPermission() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
-
-        } else {
-
         }
+        if (!nlLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("GPSが有効になっていません。\n有効化しますか？")
+                    .setCancelable(false)
+
+                    .setPositiveButton("GPS設定起動",
+                            new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int id){
+                                    Intent callGPSSettingIntent = new Intent(
+                                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    startActivity(callGPSSettingIntent);
+                                }
+                            });
+            alertDialogBuilder.setNegativeButton("キャンセル",
+                    new DialogInterface.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int id){
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = alertDialogBuilder.create();
+            alert.show();
+        }
+
     }
 
     @Override

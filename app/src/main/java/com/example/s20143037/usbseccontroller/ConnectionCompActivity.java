@@ -14,13 +14,17 @@ import android.widget.TextView;
 import android.Manifest;
 
 public class ConnectionCompActivity extends AppCompatActivity implements LocationListener {
+
+    private LocationManager mLocationManager;
+    private String provider;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_comp);
 
         // LocationManagerを取得
-        LocationManager mLocationManager =
+        mLocationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         // Criteriaオブジェクトを生成
@@ -33,22 +37,10 @@ public class ConnectionCompActivity extends AppCompatActivity implements Locatio
         criteria.setPowerRequirement(Criteria.POWER_LOW);
 
         // ロケーションプロバイダの取得
-        String provider = mLocationManager.getBestProvider(criteria, true);
+        provider = mLocationManager.getBestProvider(criteria, true);
 
 
-        // LocationListenerを登録
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mLocationManager.requestLocationUpdates(provider, 0, 0, this);
+        checkPermission();
     }
 
     @Override
@@ -79,6 +71,13 @@ public class ConnectionCompActivity extends AppCompatActivity implements Locatio
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
 
+    }
+
+    public void checkPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mLocationManager.requestLocationUpdates(provider, 0, 0, this);
     }
 
 }
