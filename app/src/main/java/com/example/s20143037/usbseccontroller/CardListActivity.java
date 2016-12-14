@@ -1,13 +1,18 @@
 package com.example.s20143037.usbseccontroller;
 
+import android.app.LauncherActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -78,4 +83,34 @@ public class CardListActivity extends AppCompatActivity  {
 
         }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            new AlertDialog.Builder(this)
+                    .setTitle("アプリケーションの終了")
+                    .setMessage("アプリケーションを終了してよろしいですか？")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO 自動生成されたメソッド・スタブ
+                            CardListActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO 自動生成されたメソッド・スタブ
+
+                        }
+                    })
+                    .show();
+
+            return true;
+        }
+        return false;
+    }
+
 }

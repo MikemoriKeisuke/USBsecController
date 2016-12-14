@@ -14,6 +14,7 @@ public class DisconnectActivity extends AppCompatActivity {
     }
 
     public void intentDisConnComp(View v) {
+        finish();
         Intent intent = new Intent(getApplication(), DisconnectCompActivity.class);
         startActivity(intent);
     }

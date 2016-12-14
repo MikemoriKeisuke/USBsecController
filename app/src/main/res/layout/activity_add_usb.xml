@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:fitsSystemWindows="true"
     tools:context="com.example.s20143037.usbseccontroller.AddUsbActivity">
 
 
@@ -18,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/textView4"
@@ -27,11 +29,11 @@
                 android:text="新規USBsec追加"
                 android:textSize="30sp" />
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="156dp"
+                android:layout_height="106dp"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_usb" />
+                android:background="@drawable/ic_usb_plus"/>
 
             <TextView
                 android:id="@+id/UsbNameView"
@@ -42,15 +44,20 @@
                 android:gravity="center_horizontal"
                 android:textSize="30sp" />
 
-            <EditText
-                android:id="@+id/editPinCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberPassword"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:maxLength="5"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/editPinCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="PINコード"
+                    android:inputType="numberPassword"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:maxLength="5"/>
+            </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView3"

@@ -10,5 +10,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.s20143037.usbseccontroller.AddCompActivity">
 
-
 </RelativeLayout>

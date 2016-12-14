@@ -2,4 +2,6 @@
     <string name="app_name">USBsecController</string>
     <string name="title_activity_search_map">Map</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_login">Sign in</string>
+
 </resources>
