@@ -17,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -59,6 +60,7 @@ public class CardListActivity extends AppCompatActivity  {
         Intent intent = new Intent(getApplication(), ConnectionActivity.class);
         startActivity(intent);
         overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
+        Toast.makeText(this, String.valueOf(v.getTag()), Toast.LENGTH_SHORT).show();
     }
 
     public void intentSearchMap(View v) {
@@ -122,7 +124,6 @@ public class CardListActivity extends AppCompatActivity  {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // TODO 自動生成されたメソッド・スタブ
-
                         }
                     })
                     .show();
