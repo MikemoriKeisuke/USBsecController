@@ -2,10 +2,11 @@ package com.example.s20143037.usbseccontroller;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,13 +16,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class SearchMapActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
+    ArrayList<Location> locationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_map);
+        String macAddress =getIntent().getStringExtra("macAddress");
+        locationList=MyService.getLocationList(macAddress);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -32,10 +39,21 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
-        LatLng loction = new LatLng(43.061061, 141.356126);
-        mMap.addMarker(new MarkerOptions().position(loction).title("Sapporo"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(loction));
-        CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(loction, 14);
+        LatLng location =new LatLng(43,144);
+        if(locationList!=null) {
+            for (Location tempLoc : locationList) {
+
+                    location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
+
+                    mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()));
+
+            }
+        }
+
+
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
         mMap.moveCamera(cUpdate);
         if (Build.VERSION.SDK_INT >= 23) {
             checkPermission();

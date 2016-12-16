@@ -88,7 +88,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="abd8f7d8798c98c3197b7182610133c3b1db7ed3">
+        sha1="e57ead7c24acb63d234908f1e87949c8d73bf884">
         <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_caed721bcfeab4f031fa32207c462a97725ce0e8\classes.dex" />
     </item>
     <item
@@ -529,7 +529,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="46a519daa675f1d4c2114b367d8fe9dd9e6f3045">
+        sha1="1ad06d93310f0b78b008701ae05d27fc70f8bbe6">
         <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_9da5a4daf019107df09d6daff3ab1776ad6e593e\classes.dex" />
     </item>
     <item

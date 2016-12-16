@@ -190,12 +190,15 @@ public class CardListActivity extends AppCompatActivity  {
         intent.putExtra("macAddress",macAddress);
         startActivity(intent);
         overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
-        Toast.makeText(this, String.valueOf(v.getTag()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.valueOf(mac), Toast.LENGTH_SHORT).show();
     }
 
     public void intentSearchMap(View v) {
         Intent intent = new Intent(getApplication(), SearchMapActivity.class);
-
+        TextView macView=(TextView) findViewById(R.id.UsbNameView);
+        String mac=macView.getText().toString();
+        String macAddress=(mac).substring(mac.length()-17);
+        intent.putExtra("macAddress",macAddress);
         startActivity(intent);
         overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
     }
