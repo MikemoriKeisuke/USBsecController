@@ -1,18 +1,20 @@
 package com.example.s20143037.usbseccontroller;
 
-import android.*;
-import android.Manifest;
-import android.app.LauncherActivity;
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanResult;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.provider.Settings;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -20,15 +22,102 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class CardListActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private LocationManager nlLocationManager;
+    final int REQUEST_ENABLE_BLUETOOTH=2;
+    boolean destory = false;
+    Context context;
+    Activity main;
+    Thread running;
+    BluetoothAdapter ba;
+    final ArrayList<String> x= new ArrayList<>();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 0: { //ActivityCompat#requestPermissions()の第2引数で指定した値
+                ba=BluetoothAdapter.getDefaultAdapter();
+                if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED && ba.isEnabled()) {
+
+                    final Intent intent=new Intent(this, MyService.class);
+                    startService(intent);
+                    //許可された場合の処理
+                }else{
+                    //拒否された場合の処理
+                }
+                break;
+            }
+        }
+    }
+    protected void initialize(){
+        BluetoothManager manager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothAdapter adapter = manager.getAdapter();
+        final BluetoothLeScanner bluetoothLeScanner = adapter.getBluetoothLeScanner();
+
+        BluetoothAdapter ba=
+                BluetoothAdapter.getDefaultAdapter();
+
+        boolean btEnable = ba.isEnabled();
+        if(btEnable == true){
+            //BluetoothがONだった場合の処理
+            requestPermissions(new String[]{ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION}, 0);
+        }else{
+            //OFFだった場合、ONにすることを促すダイアログを表示する画面に遷移
+            Intent btOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(btOn,REQUEST_ENABLE_BLUETOOTH);
+            requestPermissions(new String[]{ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION}, 0);
+        }
+        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        if(!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("GPSが有効になっていません。\n有効化しますか？")
+                    .setCancelable(false)
+
+                    //GPS設定画面起動用ボタンとイベントの定義
+                    .setPositiveButton("GPS設定起動",
+                            new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int id){
+                                    Intent callGPSSettingIntent = new Intent(
+                                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    startActivity(callGPSSettingIntent);
+                                }
+                            });
+            //キャンセルボタン処理
+            alertDialogBuilder.setNegativeButton("キャンセル",
+                    new DialogInterface.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int id){
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = alertDialogBuilder.create();
+            // 設定画面へ移動するかの問い合わせダイアログを表示
+            alert.show();
+
+        }
+
+        // 6.0以降はコメントアウトした処理をしないと初回はパーミッションがOFFになっています。
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        main = this;
+
+        context=this;
+        initialize();
+        ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> listServiceInfo = am.getRunningServices(Integer.MAX_VALUE);
+        boolean found = false;
+
         setContentView(R.layout.activity_card_list);
         nlLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
@@ -38,22 +127,55 @@ public class CardListActivity extends AppCompatActivity  {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        final ArrayList<String> DataSet = new ArrayList<String>() {
-            {
-                add("USBsec1");
-                add("USBsec2");
-                add("USBsec3");
-                add("USBsec4");
-                add("USBsec5");
-                add("USBsec6");
-                add("USBsec7");
-            }
-        };
-        // アダプタを指定する
-        mAdapter = new UsbAdapter(this, DataSet);
-        mRecyclerView.setAdapter(mAdapter);
+        for (ActivityManager.RunningServiceInfo curr : listServiceInfo) {
+            // ｸﾗｽ名を比較
+            if (curr.service.getClassName().equals(MyService.class.getName())) {
+                // 実行中のｻｰﾋﾞｽと一致
+                Toast.makeText(this, "ｻｰﾋﾞｽ実行中", Toast.LENGTH_LONG).show();
+                found = true;
+                running = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
-        checkPermission();
+                        while (true) {
+                            if (destory) {
+                                break;
+                            }
+                            final ArrayList<String> DataSet = new ArrayList<>();
+                            final HashMap<String, String> deviceHash = MyService.deviceHash;
+                            final HashMap<String, ScanResult> resultList = MyService.resultList;
+                            for (String key : deviceHash.keySet()) {
+                                String dev = deviceHash.get(key);
+                                if (dev == null) {
+                                    DataSet.add("null  :  " + key);
+                                } else {
+                                    DataSet.add(dev + "  :  " + key);
+                                }
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mAdapter = new UsbAdapter(main, DataSet);
+                                        mRecyclerView.setAdapter(mAdapter);
+
+
+                                    }
+                                });
+
+                            }
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                });
+                running.start();
+
+            }
+        }
     }
 
     public void intentConn(View v) {
