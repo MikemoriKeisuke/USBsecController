@@ -29,6 +29,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcel;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 
 import java.util.ArrayList;
@@ -60,10 +61,10 @@ public class MyService extends Service {
         public void onScanResult(int callbackType, ScanResult result) {
             super.onScanResult(callbackType, result);
             // スキャン中に見つかったデバイスに接続を試みる.第三引数には接続後に呼ばれるBluetoothGattCallbackを指定する.
-            BluetoothDevice b = result.getDevice();
-            deviceHash.put(b.getAddress(), b.getName());
-            resultList.put(b.getAddress(), result);
 
+            BluetoothDevice b = result.getDevice();
+            b.connectGatt(getApplicationContext(), true, mGattCallback);
+            resultList.put(b.getAddress(), result);
             //
         }
 
@@ -78,8 +79,8 @@ public class MyService extends Service {
         @Override
         public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
             // スキャン中に見つかったデバイスに接続を試みる.第三引数には接続後に呼ばれるBluetoothGattCallbackを指定する.
+
             mBleGatt = device.connectGatt(getApplicationContext(), false, mGattCallback);
-            gattMap.put(mBleGatt.getDevice().getAddress(), mBleGatt);
         }
     };
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
@@ -88,8 +89,11 @@ public class MyService extends Service {
             // 接続状況が変化したら実行.
             if (newState == BluetoothProfile.STATE_CONNECTED) {
 //                // 接続に成功したらサービスを検索する.
-//                Log.d(this.toString(), "終わりました");
-//
+//                Log.d(this.toString(), "終わりました")
+                BluetoothDevice b = gatt.getDevice();
+                deviceHash.put(b.getAddress(), b.getName());
+                gattMap.put(gatt.getDevice().getAddress(), gatt);
+
 //                gatt.discoverServices();
 
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
@@ -218,16 +222,22 @@ public class MyService extends Service {
         mBleGatt.readCharacteristic(read);
     }
 
+    @Nullable
     public static BluetoothGattCharacteristic getCharacteristic(String address, String sid, String cid) {
-        mBleGatt=gattMap.get(address);
-        BluetoothGattService s=mBleGatt.getService(UUID.fromString(sid));
+        BluetoothGatt gatt=gattMap.get(address);
+        if(gatt==null){
+            return null;
+        }
+        BluetoothGattService s=gatt.getService(UUID.fromString(sid));
         if (s == null) {
             return null;
         }
+        s.getCharacteristic(UUID.fromString(cid));
         BluetoothGattCharacteristic c = s.getCharacteristic(UUID.fromString(cid));
         if (c == null) {
             return null;
         }
+        BluetoothGattCharacteristic asda=c;
         return c;
     }
     public static ArrayList<Location> getLocationList(String macAddress){

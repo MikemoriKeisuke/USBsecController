@@ -3,9 +3,9 @@ package com.example.s20143037.usbseccontroller;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.BluetoothLeScanner;
-import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ import java.util.List;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class CardListActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
@@ -41,12 +41,13 @@ public class CardListActivity extends AppCompatActivity  {
     Thread running;
     BluetoothAdapter ba;
     final ArrayList<String> x= new ArrayList<>();
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case 0: { //ActivityCompat#requestPermissions()の第2引数で指定した値
                 ba=BluetoothAdapter.getDefaultAdapter();
-                if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED && ba.isEnabled()) {
+                if (grantResults.length > 0 && ba.isEnabled()) {
 
                     final Intent intent=new Intent(this, MyService.class);
                     startService(intent);
@@ -133,53 +134,60 @@ public class CardListActivity extends AppCompatActivity  {
                 // 実行中のｻｰﾋﾞｽと一致
                 Toast.makeText(this, "ｻｰﾋﾞｽ実行中", Toast.LENGTH_LONG).show();
                 found = true;
-                running = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        while (true) {
-                            if (destory) {
-                                break;
-                            }
-                            final ArrayList<String> DataSet = new ArrayList<>();
-                            final HashMap<String, String> deviceHash = MyService.deviceHash;
-                            final HashMap<String, ScanResult> resultList = MyService.resultList;
-                            for (String key : deviceHash.keySet()) {
-                                String dev = deviceHash.get(key);
-                                if (dev == null) {
-                                    DataSet.add("null  :  " + key);
-                                } else {
-                                    DataSet.add(dev + "  :  " + key);
-                                }
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mAdapter = new UsbAdapter(main, DataSet);
-                                        mRecyclerView.setAdapter(mAdapter);
-
-
-                                    }
-                                });
-
-                            }
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                });
-                running.start();
 
             }
         }
+        running = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                while (true) {
+                    if (destory) {
+                        break;
+                    }
+                    final ArrayList<String> DataSet = new ArrayList<>();
+                    final HashMap<String, String> deviceHash = MyService.deviceHash;
+                    for (String key : deviceHash.keySet()) {
+                        String dev = deviceHash.get(key);
+                        BluetoothGattCharacteristic GattChar=
+                                MyService.getCharacteristic(key,"0000a001-0000-1000-8000-00805f9b34fb","0000a012-0000-1000-8000-00805f9b34fb");
+                        if (dev == null) {
+                            DataSet.add("null  :  " + key);
+                        } else {
+                            DataSet.add(dev + "  :  " + key);
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter = new UsbAdapter(main, DataSet);
+                                mRecyclerView.setAdapter(mAdapter);
+
+
+                            }
+                        });
+
+                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        });
+        running.start();
+
     }
 
     public void intentConn(View v) {
+        TextView macView=(TextView) findViewById(R.id.UsbNameView);
+        String mac=macView.getText().toString();
+        String macAddress=(mac).substring(mac.length()-17);
         Intent intent = new Intent(getApplication(), ConnectionActivity.class);
+        intent.putExtra("macAddress",macAddress);
         startActivity(intent);
         overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
         Toast.makeText(this, String.valueOf(v.getTag()), Toast.LENGTH_SHORT).show();
@@ -187,6 +195,7 @@ public class CardListActivity extends AppCompatActivity  {
 
     public void intentSearchMap(View v) {
         Intent intent = new Intent(getApplication(), SearchMapActivity.class);
+
         startActivity(intent);
         overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
     }
