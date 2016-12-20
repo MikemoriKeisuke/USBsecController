@@ -3,7 +3,6 @@ package com.example.s20143037.usbseccontroller;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.content.Context;
@@ -134,13 +133,21 @@ public class CardListActivity extends AppCompatActivity  {
                 // 実行中のｻｰﾋﾞｽと一致
                 Toast.makeText(this, "ｻｰﾋﾞｽ実行中", Toast.LENGTH_LONG).show();
                 found = true;
-
-
             }
         }
         running = new Thread(new Runnable() {
             @Override
             public void run() {
+                final ArrayList<String> aa = new ArrayList<>();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter = new UsbAdapter(main, aa);
+                        mRecyclerView.setAdapter(mAdapter);
+
+
+                    }
+                });
 
                 while (true) {
                     if (destory) {
@@ -148,27 +155,26 @@ public class CardListActivity extends AppCompatActivity  {
                     }
                     final ArrayList<String> DataSet = new ArrayList<>();
                     final HashMap<String, String> deviceHash = MyService.deviceHash;
+                    DataSet.clear();
                     for (String key : deviceHash.keySet()) {
                         String dev = deviceHash.get(key);
-                        BluetoothGattCharacteristic GattChar=
-                                MyService.getCharacteristic(key,"0000a001-0000-1000-8000-00805f9b34fb","0000a012-0000-1000-8000-00805f9b34fb");
                         if (dev == null) {
                             DataSet.add("null  :  " + key);
                         } else {
                             DataSet.add(dev + "  :  " + key);
                         }
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                mAdapter = new UsbAdapter(main, DataSet);
-                                mRecyclerView.setAdapter(mAdapter);
 
 
-                            }
-                        });
+                    }runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter = new UsbAdapter(main, DataSet);
+                            mRecyclerView.setAdapter(mAdapter);
 
-                    }
+
+                        }
+                    });
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {

@@ -39,7 +39,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
-        LatLng location =new LatLng(43,144);
+        LatLng location =new LatLng(43.055934,141.3775153);
         if(locationList!=null) {
             for (Location tempLoc : locationList) {
 

@@ -15,12 +15,13 @@ public class ConnectionActivity extends AppCompatActivity implements TextWatcher
 
     private EditText editText; // 変更を検知するエディットボックス
     private TextView textView;
+    String macAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
-
+        getIntent().getStringExtra("macAddress");
         editText = (EditText)findViewById(R.id.enterPinCode);
         editText.addTextChangedListener(this);
 
@@ -30,7 +31,12 @@ public class ConnectionActivity extends AppCompatActivity implements TextWatcher
 
     public void intentConnComp(View v) {
         finish();
-        Intent intent = new Intent(getApplication(), ConnectionCompActivity.class);
+        textView = (TextView)findViewById(R.id.textView4);
+        String scomm=textView.getText().toString();
+        byte[] bcomm=scomm.getBytes();
+        Intent intent = getIntent();
+        MyService.writeCharacteristic(intent.getStringExtra("macAddress"),"0000a001-0000-1000-8000-00805f9b34fb","0000a011-0000-1000-8000-00805f9b34fb",bcomm);
+
         startActivity(intent);
     }
 
