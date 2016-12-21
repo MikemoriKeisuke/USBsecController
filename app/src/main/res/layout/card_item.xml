@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -17,27 +17,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_off" />
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/UsbNameView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
-                android:text="text" />
+                android:layout_toStartOf="@+id/toggleButton2" />
 
-        </LinearLayout>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:id="@+id/toggleButton2"
+                android:layout_alignBaseline="@+id/UsbNameView"
+                android:layout_alignBottom="@+id/UsbNameView"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
