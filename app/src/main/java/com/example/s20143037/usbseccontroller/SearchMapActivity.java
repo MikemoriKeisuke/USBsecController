@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -16,19 +17,36 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class SearchMapActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     ArrayList<Location> locationList;
-
+    private double latitude = 43.055934;
+    private double longitude = 141.3775153;
+    private String caption = "2016/12/12";
+    String work[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_map);
         String macAddress =getIntent().getStringExtra("macAddress");
         locationList=MyService.getLocationList(macAddress);
+
+        work = PositionRead(macAddress).split(",", 0);
+        if (work!=null) {
+            caption  = work[1];
+            latitude = Double.parseDouble(work[2]);
+            longitude= Double.parseDouble(work[3]);
+        } else {
+            Toast.makeText(this,"まだ使用履歴がありません。" , Toast.LENGTH_LONG).show();
+        }
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -39,24 +57,21 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
-        LatLng location =new LatLng(43.055934,141.3775153);
-        if(locationList!=null) {
-            for (Location tempLoc : locationList) {
-
+        if (work!=null) {
+            LatLng location = new LatLng(latitude, longitude);
+            if (locationList != null) {
+                for (Location tempLoc : locationList) {
                     location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
+                    mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
 
-                    mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()));
-
+                }
             }
-        }
-
-
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
-        mMap.moveCamera(cUpdate);
-        if (Build.VERSION.SDK_INT >= 23) {
-            checkPermission();
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
+            mMap.moveCamera(cUpdate);
+            if (Build.VERSION.SDK_INT >= 23) {
+                checkPermission();
+            }
         }
     }
 
@@ -81,4 +96,29 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
 //            mMap.setMyLocationEnabled(true);
 //        }
     }
+
+    //位置情報読み込み
+    //macアドレスから取得
+    public String PositionRead (String mac) {
+        InputStream in;
+        String lineBuffer;
+        String str="";
+
+        mac = mac.replaceAll(":","");
+
+        try {
+            in = openFileInput(mac + ".txt");
+
+            BufferedReader reader= new BufferedReader(new InputStreamReader(in,"UTF-8"));
+            while( (lineBuffer = reader.readLine()) != null ){
+                str += lineBuffer + "\n";
+            }
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+
 }

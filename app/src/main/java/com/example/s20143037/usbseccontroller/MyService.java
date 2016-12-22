@@ -41,7 +41,13 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -132,6 +138,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         return;
                     }
                     tempList.add(getLastLocation());
+
                     disconnList.put(mBleGatt.getDevice().getAddress(), tempList);
                     String macaddress=mBleGatt.getDevice().getAddress();
                     deviceHash.remove(macaddress);
@@ -331,5 +338,26 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             return null;
         }
         return  LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
+    }
+
+    //位置情報保存
+    //macアドレス,緯度経度を保存
+    public void PositionSave (String mac, int latitude, int longitude){
+        OutputStream out;
+
+        Calendar date = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日");
+
+        try {
+            out = openFileOutput((mac + ".txt"),MODE_PRIVATE|MODE_APPEND);
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(out,"UTF-8"));
+
+            //追記する
+            writer.append(sdf.format(date.getTime()) + "," + latitude + "," + longitude + "\n");
+            writer.close();
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
     }
 }

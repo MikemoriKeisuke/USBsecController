@@ -15,7 +15,6 @@ public class ConnectionActivity extends AppCompatActivity implements TextWatcher
 
     private EditText editText; // 変更を検知するエディットボックス
     private TextView textView;
-    String macAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
