@@ -14,10 +14,15 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +35,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class CardListActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private UsbAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private LocationManager nlLocationManager;
     final int REQUEST_ENABLE_BLUETOOTH=2;
@@ -135,6 +140,7 @@ public class CardListActivity extends AppCompatActivity  {
                 found = true;
             }
         }
+
         running = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -142,43 +148,45 @@ public class CardListActivity extends AppCompatActivity  {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter = new UsbAdapter(main, aa);
                         mRecyclerView.setAdapter(mAdapter);
-
 
                     }
                 });
+                final ArrayList<String> DataSet = new ArrayList<>();
+
+                ArrayList<String>list=new ArrayList<>();
+
+                list.add("存在しません  :  20:20:20:20:20:20");
+                mAdapter=new UsbAdapter(context,list);
 
                 while (true) {
                     if (destory) {
                         break;
                     }
-                    final ArrayList<String> DataSet = new ArrayList<>();
-                    final HashMap<String, String> deviceHash = MyService.deviceHash;
-                    DataSet.clear();
-                    for (String key : deviceHash.keySet()) {
-                        String dev = deviceHash.get(key);
-                        if (dev == null) {
-                            DataSet.add("null  :  " + key);
-                        } else {
-                            DataSet.add(dev + "  :  " + key);
+                    if(mAdapter.wait) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
 
+                        final HashMap<String, String> deviceHash = MyService.deviceHash;
+                        for (String key : deviceHash.keySet()) {
+                            String dev = deviceHash.get(key);
+                            if (dev == null) {
+                                mAdapter.addAdapter("null  :  " + key);
 
-
-                    }runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mAdapter = new UsbAdapter(main, DataSet);
-                            mRecyclerView.setAdapter(mAdapter);
-
-
+                            } else {
+                                mAdapter.addAdapter(dev + "  :  " + key);
+                            }
                         }
-                    });
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                mRecyclerView.setAdapter(mAdapter);
+                            }
+                        });
                     }
                 }
             }
@@ -188,10 +196,11 @@ public class CardListActivity extends AppCompatActivity  {
 
     }
 
+
     public void intentConn(View v) {
         TextView macView=(TextView) findViewById(R.id.UsbNameView);
         String mac=macView.getText().toString();
-        String macAddress=(mac).substring(mac.length()-17);
+        String macAddress=getMacAddress(mac);
         Intent intent = new Intent(getApplication(), ConnectionActivity.class);
         intent.putExtra("macAddress",macAddress);
         startActivity(intent);
@@ -271,6 +280,12 @@ public class CardListActivity extends AppCompatActivity  {
             return true;
         }
         return false;
+    }
+    private String getMacAddress(String title){
+        String temp="";
+        String mac=title;
+        temp=(mac).substring(mac.length()-17);
+        return temp;
     }
 
 }

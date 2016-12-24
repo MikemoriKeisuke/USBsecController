@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -28,15 +29,17 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
-                android:layout_toStartOf="@+id/toggleButton2" />
+                android:layout_toStartOf="@+id/switch1" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
-                android:id="@+id/toggleButton2"
-                android:layout_alignBaseline="@+id/UsbNameView"
+                android:id="@+id/switch1"
+                android:layout_alignParentEnd="true"
+                android:background="@null"
                 android:layout_alignBottom="@+id/UsbNameView"
-                android:layout_alignParentEnd="true" />
+                android:elevation="1dp" />
+
         </RelativeLayout>
 
         <View
@@ -62,6 +65,7 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/secondary_text"/>
+
             <Button
                 android:text="探索"
                 android:layout_width="match_parent"

@@ -3,651 +3,237 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-api\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b1df8fa3d372a27e4e969ce00b00689ee1eed031">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-api-10.0.1_40e71d296ec0787a7cc68205749d489647fa6022\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast-framework\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="df1cb17511aabbb63264a0024949d1e42502a512">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-framework-10.0.1_a24bebcace553ef1d11df6135ae83cdd844e46c8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-10.0.1_d5116df1093ffc93b2c3aea54ad9cc842ec2abaf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.0.0\jars\libs\internal_impl-24.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0_8be160a59a1f063f307e7891bca1cddbfcf23a36\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="1108575c7dc7b7f5b378b3290ac90de81a9b8830">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-25.0.1_8f24279e09a7423b4cba9557472b5021d3efc7ad\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_6b67ea500d4366b437e5d1269fd42b01b9410426\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="a48dc0b148059764d32500be558702d5ff932058">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-10.0.1_a3a0b39fa2b268cee0ac7fb37911703f6f2e094b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_b3e0c573f4d5337a84e6e5143a156160149d6b93\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-iid-10.0.1_08ebbb9de929895b9c768f364e547a207360537a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="4c20655e6acad3bc65769208c1fd90128dae0c4a">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_caed721bcfeab4f031fa32207c462a97725ce0e8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-10.0.1_e02996dc94f5c1221782755102b1fb4c20567c0f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f83b00041ecfba705603fec40363416c7de69719">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_41f33bdadc8b5028dab4099fc6302b7c57452fd5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.0.1_5705d91b311a7ced80359a55518fa2a8d98efbee\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="ffc15e965a9e8c28f24455eedd4cac215c45d1fc">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-config-10.0.1_96a1b70cc9a18e0a3bc0eb826e3cb9decfcf0c22\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="1e11c68fec92a17c84dd8d1dd80e74c4e67b12e2">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-10.0.1_594f656a11a5e36e4856d59bf337177bed2c5611\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-messaging-10.0.1_93f043baa99843e87fa7730c0c65d46a4965eade\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-v4-impl\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f23ad0f8e58713ff4b55f61c0bbde3830378347c">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-v4-impl-10.0.1_0c036f1ef64af84feaa23e4a92c12fe8b3b1638f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\palette-v7\24.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-palette-v7-24.0.0_6d688f8efcc0663cd07023fbb40bd5f98ceaa4cd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-10.0.1_ef4764419ca41176d69cd58c8be5b4ef83dda46f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-10.0.1_ff162e79bb9e6f0d52bca42eec1bee03c3de7de0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-10.0.1_736cb6bd0d208ccb31efdadd8bd326f5b680f9c8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="971509bbe30bb7b971fc1c49d7b23d0d818830ac">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-10.0.1_3c5355f174418961235e1e6ad5b41a480c7fed7f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-awareness\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="4385ccc0a88b33d182a836eadb47be55c8eb1107">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-awareness-10.0.1_62a68c409a1f6ec28106d20aa40735f4d08a2d50\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b955cb3a1ad6f1b6ff728ce1e0cd592c1717b440">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-lite-10.0.1_f6ec79edacf9b19c4a5a3386c0e8bf4965310333\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-10.0.1_050b6bc438c0bc69a7db08c8438d46418bbe23a5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="4c829ff0ccfecb28a999ee46d9e75948dfc777a4">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-10.0.1_c6d79ff496856220410e7c6def4c8f9706431a6c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_0320f0821b8b5af3758292dd217e34d2e3804c3a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_c5cc6e51fbd4495ec1e2435a624b905f1f1c19f7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_418740d871fd35c9bf2c35fed8d7ac3e43891d01\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_e79ef4b822e793fe7c4a0ac413e906792fc700e5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_1ac111e325de14853e9f53c502d26f0137e12f5e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="2d5d113b0352ab60946fc44c518cf68fd26cbb79">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-10.0.1_da5edb2d0aca66d081717def82d7c726b0b1d750\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-instantapps\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="45305e6af414dab5aba6c3225081c2f15c3bdd1e">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-instantapps-10.0.1_bafeb77c3f6db5ef77054df41187c6871c923bb3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="92c871a22463a247e8a77a9f3fd231c278788c4a">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-10.0.1_9033cd594dcb4db2f4e87f17db893234c244f1d0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-appindexing\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="ae80d328a8548b4610ead6c624bab8c6a6984f5b">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-appindexing-10.0.1_23016ccd87b1aa36a60e595914473225ad7d9500\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\design\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.0.1_eb703ab40307ceb31e2f0f98df721f17459dbf05\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_4c9ab78a42737a6b1129a619a89471a141296ae4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-places-10.0.1_c416e166f4fbd9d1180529fad97018d1deb04208\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-10.0.1_2d8ce32d98700ded7247ff5dba49f9cbfc735412\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="39907d5c8f5902fffef30160ca7447c93b82405c">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-10.0.1_1556298ffb40b1f7490f5038992873bc93292bc6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_480ab591e93333083724ec29ed460096904c6a54\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e871881b36b32e6bfd271a830c6eeb54ff0fc185">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-impl-10.0.1_8b2e7fa3c99ed5dba86b54121645a81c6f2672f6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gass\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="57c2eceb8548de84509d1ebc293fedec53231f6c">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gass-10.0.1_4e788cf7e691840f3ce75867415cecf75dafdae5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="ba6aa5e69ef31dee57208125323cee958fc67565">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-10.0.1_4157fe60a7ed23c17185c712475e595d8baf5ad4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="1d193729baf37df3d902a423291423a0df7e3779">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-clearcut-10.0.1_e5b41c98b20d55817b9957c5ce4c791b93118084\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-crash\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-crash-10.0.1_233700f5dce5ae861bad17b8a7e5b601379b5ee3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_e7f88ea2cb5406cc333810c207c706f846c69e1e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_daff29ce01602529f93ace6b8e93f4bc0b107462\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-10.0.1_65aa7b810bf7ed5b2b06e32700e677752c7433e8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c14f0c89f28cf782e42581ab0aba5f63af39b3d2">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-plus-10.0.1_dc9968048c7ee98a400b04f408f8598d6b5c9d34\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-10.0.1_5c2f0f14bfbafc4a5a8a0ab848a51db672f77fc1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-10.0.1_45a18e329dfdfa2243e471980a79b59ea6494bd4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-24.0.0_a5696b42e7e6ea9785a1fb53f6ef60d083f0f5a9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_512f5f7307b9640b5cfff13163b365d725220c4a\classes.dex" />
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_f66cac894d381a08c5701645384b6f0be31a3715\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d0460bf07cc3657e0be518ca01c174493951c6b8">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-10.0.1_f3aa9e8ef12fbda2c758eac8ff451b7306273e76\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="028f8255cb977b29cdffbfcf05caa0459686120c">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-10.0.1_3e853efd61dbc32a008171f93f328b129ba8d05d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-base-10.0.1_5f818dc07495ec2c087b152687087a7a8ed3ec0b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-10.0.1_f9754955d81f6b8c7e7891d19438517a46485a37\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="cc6b9dec9d9545d7d9c63b2cd83e8bbbc316fbcd">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_9da5a4daf019107df09d6daff3ab1776ad6e593e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-10.0.1_77c932d79f459d3b69b1c39b5588382dc83e60aa\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_3cc65f71f1143ac456b6fc9d8f1d5e5fdb2cddc7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_0783d0d833380d5f689921779bfc9ed3afe6f493\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_00274806c53a619f7a20fb479a4349ec697c7c95\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="408a599ac77cd17fe8e8919326bec617b3d005bd">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-10.0.1_cac3a69cd7593d5ca50a8db1383ff3e7f009b2ff\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-10.0.1_451d58228a95e5360469bd15b6cf6460e09d9794\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="7a64bf6dc775198eed9db9468a133adf7dfe6562">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-10.0.1_a7dab6bc0d4892588b85222075105a17edeca2c9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="771267c5b0c7a5b348d3205dcfa1f871af7e0177">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-10.0.1_67d2c9e8e20a308dd8d87e7dbcbaab30f00d6eaa\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.1_6d82f9d9afc6a42f7fa441df51350c4fe23aafa0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f6cf557be4dbd0282ea2388633e5378634423226">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-10.0.1_96617d86a81a6aae350663db5024437f68cedbaf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.1\jars\classes.jar"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="297d4bcf6ed4e747a1bf7d0d094a2d911a8d3a8e">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.0.1_e32af26c7b0437aa4a5c2fc70e2c2e0af09f5bf9\classes.dex" />
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.0.1_50da632db04eb8a1b233858904195de43ab41b23\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\s20143070\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_cd76207a55aae1bcb442044e816a347a6592ec83\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_4d0d28db65356d3ca4151382df0fdcf504683699\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a208cc498c0e8582c72d51b462a67bc1a02c5d36">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ee006cff8d159e146805eb064a918c9d6260d6a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_f4e05efb4bba25967a23903619804cd3217ad1f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_720cb3318cbb4e8626b0887abedc28d78eefa7fb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_89e9dd9b1b3b7f0d4c78eb2453e4c03a8e53fb35\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_21f316734490f19fccf48df9f3006cca955c3f5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_7eb9f70194e207281fde5eca6bbc7dee949b38ab\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-10.0.1_cea854d9fe61008fc57ff6b7bc3e650dc735d5c4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_b761ad0a8bd1bb136ce7d6af85a4c935f85f666e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\design\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.0.1_af6e3c28094aef4520547df31f6af1f1df4e5400\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e5a85515ddf98fa82ecc82d1be7c04f3d2de96e7">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_54e493c2e5e7c869cbd8796ffab0d3c0dfc57422\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_924d889127f17a6a06b3d4c6e293dbbf862fd421\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.0.1_9f1ce4aacba4751d1b044980f4eb180f2335a2a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_4069a9bf46991e1211ba9217a026800c7cb60523\classes.dex" />
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_1852e5e39413128561182d99e5b89fe2cf1e5218\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\10.0.1\jars\classes.jar"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="c6e1f361e9d61aece9dac39b77fcc98a337a144d">
-        <dex dex="C:\Users\s20143070\Documents\GitHub\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-10.0.1_4b2ffbab98084535e5f38fb25bf8bed4763bb6ff\classes.dex" />
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_7d9bc418b00527b1aab0b7c7dbdf3c06ad89ce16\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-10.0.1_11c6090ea882c6eda2ac7d298a301e6f4cf75ff5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_546ff763af166b6b395ae6fcb854e6ad3fce8d3a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_9d21ce4f703d0cca038546cb944c6f8219941548\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_1a5d0cff35590f95a7acb4a4630fcfd8eb995c9f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1108575c7dc7b7f5b378b3290ac90de81a9b8830">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-25.0.1_4a8ed0bb4ac6daf4addca706ed05fa8021f0b867\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_09addb0db9d5909369bc32007c56b0646c74af08\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_bd0a7bba97dda21769a6204e4461725b9ffee201\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
+        <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.1_87c3aefcf2244ab567a9b971784634f8a5111d40\classes.dex" />
     </item>
 
 </items>
