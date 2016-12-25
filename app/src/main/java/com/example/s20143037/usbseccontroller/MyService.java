@@ -178,7 +178,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                 .setContentTitle("できた")
                 .setContentText("うんこ")
                 .setContentIntent(pi)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_sec)
                 .setLocalOnly(true)
                 .build();
         NotificationManager nm = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
