@@ -41,7 +41,13 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -133,7 +139,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                     }
                     tempList.add(getLastLocation());
                     disconnList.put(mBleGatt.getDevice().getAddress(), tempList);
-                    String macaddress=mBleGatt.getDevice().getAddress();
+                    String macaddress = mBleGatt.getDevice().getAddress();
                     deviceHash.remove(macaddress);
                     gattMap.remove(macaddress);
                     mBleGatt.close();
@@ -330,6 +336,35 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             // for ActivityCompat#requestPermissions for more details.
             return null;
         }
-        return  LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
+        return LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
     }
+
+    //位置情報保存
+    //macアドレスと緯度経度を渡すと最新の分のみ保存するよ
+    //追加するよの方を使えば追加保存になるよ
+    public void PositionSave(String mac, int latitude, int longitude) {
+        OutputStream out;
+
+        Calendar date = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日");
+
+        try {
+            out = openFileOutput((mac + ".txt"), MODE_PRIVATE | MODE_APPEND);
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
+
+            //上書きするよ
+            writer.write(sdf.format(date.getTime()) + "," + latitude + "," + longitude + "\n");
+
+            //追加するよ
+//            writer.append(sdf.format(date.getTime()) + "," + latitude + "," + longitude + "\n");
+
+            writer.close();
+
+
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+    }
+
 }
