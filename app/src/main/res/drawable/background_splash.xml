@@ -4,13 +4,10 @@
     android:opacity="opaque">
 
     <item
-        android:drawable="@color/primary_dark"/>
+        android:drawable="@color/secondary_text"/>
 
     <item
-        android:gravity="center">
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/top"/>
-    </item>
+        android:drawable="@drawable/ic_top"
+        android:gravity="center" />
 
 </layer-list>
