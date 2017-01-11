@@ -181,6 +181,10 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                 .setSmallIcon(R.drawable.ic_sec)
                 .setLocalOnly(true)
                 .build();
+
+        //削除できないように設定
+//        notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
         NotificationManager nm = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.notify(0, notification);
 
