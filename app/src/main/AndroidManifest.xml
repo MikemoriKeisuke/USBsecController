@@ -31,8 +31,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CardListActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
+            android:theme="@style/SplashTheme">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -54,18 +53,12 @@
         <activity
             android:name=".SearchMapActivity"
             android:label="@string/title_activity_search_map" />
-        <activity android:name=".AddUsbActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ConnectionActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DisconnectActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddCompActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ConnectionCompActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DisconnectCompActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".AddUsbActivity" />
+        <activity android:name=".ConnectionActivity" />
+        <activity android:name=".DisconnectActivity" />
+        <activity android:name=".AddCompActivity" />
+        <activity android:name=".ConnectionCompActivity" />
+        <activity android:name=".DisconnectCompActivity" />
         <service
             android:name=".MyService"
             android:enabled="true"
