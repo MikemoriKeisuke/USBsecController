@@ -358,7 +358,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     //位置情報保存
     //macアドレスと緯度経度を渡すと最新の分のみ保存するよ
     //追加するよの方を使えば追加保存になるよ
-    public void PositionSave(String mac, int latitude, int longitude) {
+    public void PositionSave(String mac, double latitude, double longitude) {
         OutputStream out;
 
         Calendar date = Calendar.getInstance();
