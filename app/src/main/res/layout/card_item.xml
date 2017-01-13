@@ -57,7 +57,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/IntentConnButton"
-                android:onClick="intentConn"
                 android:layout_weight="1"
                 style="@style/ffButton"/>
 

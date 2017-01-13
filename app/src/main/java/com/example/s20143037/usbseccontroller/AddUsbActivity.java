@@ -31,7 +31,19 @@ public class AddUsbActivity extends AppCompatActivity implements TextWatcher {
 
     public void intentAddComp(View v) {
         finish();
-        Intent intent = new Intent(getApplication(), AddCompActivity.class);
+        textView = (TextView)findViewById(R.id.textView4);
+        String scomm=textView.getText().toString();
+        byte[] bcomm=new byte[6];
+        for(int i=0;i<scomm.length();i++){
+            int temp=Integer.parseInt(scomm.substring(i,i+1));
+            bcomm[i]=(byte)temp;
+        }
+
+        Intent intent = getIntent();
+        String mac=intent.getStringExtra("macAddress");
+        MyService.writeCharacteristic(mac,"0000a001-0000-1000-8000-00805f9b34fb","0000a011-0000-1000-8000-00805f9b34fb",bcomm);
+        startActivity(intent);
+        intent = new Intent(getApplication(), AddCompActivity.class);
         startActivity(intent);
     }
 

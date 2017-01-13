@@ -41,10 +41,10 @@ public class CardListActivity extends AppCompatActivity  {
     final int REQUEST_ENABLE_BLUETOOTH=2;
     boolean destory = false;
     Context context;
-    Activity main;
+    static Activity main;
     Thread running;
     BluetoothAdapter ba;
-    final ArrayList<String> x= new ArrayList<>();
+    final HashMap<String,String> x= new HashMap();
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -173,11 +173,15 @@ public class CardListActivity extends AppCompatActivity  {
                         final HashMap<String, String> deviceHash = MyService.deviceHash;
                         for (String key : deviceHash.keySet()) {
                             String dev = deviceHash.get(key);
-                            if (dev == null) {
-                                mAdapter.addAdapter("null  :  " + key);
+                            String map=x.get(key);
+                            if(map==null) {
+                                x.put(key,dev);
+                                if (dev == null) {
+                                    mAdapter.addAdapter("null  :  " + key);
 
-                            } else {
-                                mAdapter.addAdapter(dev + "  :  " + key);
+                                } else {
+                                    mAdapter.addAdapter(dev + "  :  " + key);
+                                }
                             }
                         }
                         runOnUiThread(new Runnable() {
@@ -281,7 +285,7 @@ public class CardListActivity extends AppCompatActivity  {
         }
         return false;
     }
-    private String getMacAddress(String title){
+    static String getMacAddress(String title){
         String temp="";
         String mac=title;
         temp=(mac).substring(mac.length()-17);

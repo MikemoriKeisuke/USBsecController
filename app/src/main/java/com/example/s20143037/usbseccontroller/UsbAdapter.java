@@ -1,29 +1,35 @@
 package com.example.s20143037.usbseccontroller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static android.support.v7.recyclerview.R.styleable.RecyclerView;
+import static com.example.s20143037.usbseccontroller.CardListActivity.main;
 
 public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
     private LayoutInflater onLayoutInflater;
      ArrayList<String> onDataList;
     static ArrayList<Boolean>onBoolean ;
     static boolean wait=true;
+    static Context contxt;
 
     int count=0;
 
     public UsbAdapter(Context context, ArrayList<String> dataList) {
         super();
+        contxt=context;
         onLayoutInflater = LayoutInflater.from(context);
         onDataList = dataList;
         onBoolean=new ArrayList<>();
@@ -63,19 +69,43 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView text;
         Switch mSwitch;
+        Button conButton;
 
         public ViewHolder(View v) {
             super(v);
             text = (TextView) v.findViewById(R.id.UsbNameView);
             mSwitch=(Switch) v.findViewById(R.id.switch1);
+            conButton=(Button)v.findViewById(R.id.IntentConnButton);
+            conButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String temp=text.getText().toString();
+                    temp=CardListActivity.getMacAddress(temp);
+                    String macAddress=CardListActivity.getMacAddress(temp);
+                    Intent intent=new Intent(contxt,AddUsbActivity.class);
+                    intent.putExtra("macAddress",macAddress);
+                    main.startActivity(intent);
+                    main.overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
+                    Toast.makeText(main, String.valueOf(macAddress), Toast.LENGTH_SHORT).show();
+
+                }
+            });
             mSwitch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     boolean bool=onBoolean.get(getAdapterPosition());
-
+                    String mac=CardListActivity.getMacAddress(text.getText().toString());
                     if(bool){
+                        int temp=1;
+                        byte[] test=new byte[1];
+                        test[0]=(byte)temp;
+                        MyService.writeCharacteristic(mac,"0000a003-0000-1000-8000-00805f9b34fb","0000a031-0000-1000-8000-00805f9b34fb",test);
                         int i=0;
                     }else{
+                        int temp=0;
+                        byte[] test=new byte[1];
+                        test[0]=(byte)temp;
+                        MyService.writeCharacteristic(mac,"0000a003-0000-1000-8000-00805f9b34fb","0000a031-0000-1000-8000-00805f9b34fb",test);
                         int i=0;
                     }
                     wait=false;
