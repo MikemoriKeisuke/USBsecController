@@ -1,5 +1,6 @@
 package com.example.s20143037.usbseccontroller;
 
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -82,11 +83,21 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
                     String temp=text.getText().toString();
                     temp=CardListActivity.getMacAddress(temp);
                     String macAddress=CardListActivity.getMacAddress(temp);
-                    Intent intent=new Intent(contxt,AddUsbActivity.class);
-                    intent.putExtra("macAddress",macAddress);
-                    main.startActivity(intent);
-                    main.overridePendingTransition ( R.anim.in_anim, R.anim.out_anim);
-                    Toast.makeText(main, String.valueOf(macAddress), Toast.LENGTH_SHORT).show();
+                    try {
+                        if (MyService.addAbleMap.get(macAddress)) {
+
+                            MyService.readCharacteristic(macAddress, "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
+                            Intent intent = new Intent(contxt, AddUsbActivity.class);
+                            intent.putExtra("macAddress", macAddress);
+                            main.startActivity(intent);
+                            main.overridePendingTransition(R.anim.in_anim, R.anim.out_anim);
+                            Toast.makeText(main, String.valueOf(macAddress), Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(main,String.valueOf("すでにパスワードが登録されています。"),Toast.LENGTH_SHORT).show();
+                        }
+                    }catch (NullPointerException e){
+
+                    }
 
                 }
             });
@@ -123,6 +134,16 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
     public void addAdapter(String data){
         onDataList.add(data);
         onBoolean.add(false);
+    }
+    public void deleteAdapter(String data){
+        int i=0;
+        for(String temp:onDataList){
+            if(temp.equals(data)){
+                onDataList.remove(i);
+                onBoolean.remove(i);
+                i++;
+            }
+        }
     }
     static void chengeBoolean(int position) {
         boolean setboolean = onBoolean.get(position);

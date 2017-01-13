@@ -29,6 +29,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -171,18 +172,31 @@ public class CardListActivity extends AppCompatActivity  {
                         }
 
                         final HashMap<String, String> deviceHash = MyService.deviceHash;
+                        final HashMap<String,String> deleteMap=new HashMap<>();
+                        final ArrayList<String> deleteList=mAdapter.onDataList;
+                        for(String temp:deleteList){
+                            deleteMap.put(getMacAddress(temp),temp);
+                        }
                         for (String key : deviceHash.keySet()) {
                             String dev = deviceHash.get(key);
+
+                            if(deleteMap.containsKey(key)) {
+                                deleteMap.remove(key);
+                            }
+
                             String map=x.get(key);
                             if(map==null) {
                                 x.put(key,dev);
                                 if (dev == null) {
                                     mAdapter.addAdapter("null  :  " + key);
-
                                 } else {
                                     mAdapter.addAdapter(dev + "  :  " + key);
                                 }
                             }
+                        }
+                        for(String temp :deleteMap.keySet()){
+                            mAdapter.deleteAdapter(deleteMap.get(temp));
+                            x.remove(temp);
                         }
                         runOnUiThread(new Runnable() {
                             @Override

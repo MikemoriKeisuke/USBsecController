@@ -25,26 +25,31 @@ public class AddUsbActivity extends AppCompatActivity implements TextWatcher {
         editText = (EditText)findViewById(R.id.editPinCode);
         editText.addTextChangedListener(this);
 
-        textView = (TextView)findViewById(R.id.textView4);
     }
 
 
     public void intentAddComp(View v) {
         finish();
-        textView = (TextView)findViewById(R.id.textView4);
-        String scomm=textView.getText().toString();
+        String scomm=editText.getText().toString();
         byte[] bcomm=new byte[6];
         for(int i=0;i<scomm.length();i++){
             int temp=Integer.parseInt(scomm.substring(i,i+1));
             bcomm[i]=(byte)temp;
         }
-
-        Intent intent = getIntent();
+        Intent intent = new Intent(getApplication(), AddCompActivity.class);
+        startActivity(intent);
+        intent = getIntent();
         String mac=intent.getStringExtra("macAddress");
+        MyService.pinMap.put(mac,bcomm);
         MyService.writeCharacteristic(mac,"0000a001-0000-1000-8000-00805f9b34fb","0000a011-0000-1000-8000-00805f9b34fb",bcomm);
-        startActivity(intent);
-        intent = new Intent(getApplication(), AddCompActivity.class);
-        startActivity(intent);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        MyService.writeCharacteristic(mac,"0000a002-0000-1000-8000-00805f9b34fb","0000a021-0000-1000-8000-00805f9b34fb",bcomm);
+
+
     }
 
     @Override
@@ -60,8 +65,8 @@ public class AddUsbActivity extends AppCompatActivity implements TextWatcher {
         String inputStr= editable.toString();
 
         if(inputStr.length() >=5){
-            textView.setFocusableInTouchMode(true);
-            textView.requestFocus(View.FOCUS_UP);
+            editText.setFocusableInTouchMode(true);
+            editText.requestFocus(View.FOCUS_UP);
 
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);

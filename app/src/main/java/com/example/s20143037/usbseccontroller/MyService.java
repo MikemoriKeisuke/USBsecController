@@ -60,12 +60,13 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     private final static int SDKVER_LOLLIPOP = 21;
     private final static int MESSAGE_NEW_RECEIVEDNUM = 0;
     private final static int MESSAGE_NEW_SENDNUM = 1;
-    private final static int REQUEST_ENABLE_BT = 123456;
     static BluetoothManager mBleManager;
     private BluetoothAdapter mBleAdapter;
     private boolean mIsBluetoothEnable = false;
     private BluetoothLeScanner mBleScanner;
     static BluetoothGatt mBleGatt;
+    static HashMap<String,Boolean> addAbleMap=new HashMap<>();
+    static HashMap<String,byte[]> pinMap=new HashMap<>();
     Service main;
     static Location location;
     static HashMap<String, BluetoothGatt> gattMap = new HashMap<>();
@@ -157,6 +158,24 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                     mBleGatt = null;
                 }
                 mIsBluetoothEnable = false;
+            }
+        }
+        @Override
+        public void onCharacteristicRead(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic,int a){
+            byte[] value=characteristic.getValue();
+            if(characteristic.getUuid().equals(UUID.fromString("0000a012-0000-1000-8000-00805f9b34fb"))){
+                byte temp=value[0];
+                if(temp==(byte)0){
+                    addAbleMap.put(gatt.getDevice().getAddress(),true);
+                }else{
+                    addAbleMap.put(gatt.getDevice().getAddress(),false);
+                }
+            }
+        }
+        @Override
+        public void onServicesDiscovered(BluetoothGatt gatt,int status){
+            if(gatt.getService(UUID.fromString("0000a001-0000-1000-8000-00805f9b34fb"))!=null){
+                readCharacteristic(gatt.getDevice().getAddress(),"0000a001-0000-1000-8000-00805f9b34fb","0000a012-0000-1000-8000-00805f9b34fb");
             }
         }
     };
@@ -273,10 +292,10 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     }
 
     public static void readCharacteristic(String address, String sid, String cid) {
-        mBleGatt = gattMap.get(address);
-        BluetoothGattService s = mBleGatt.getService(UUID.fromString(sid));
+        BluetoothGatt gatt = gattMap.get(address);
+        BluetoothGattService s = gatt.getService(UUID.fromString(sid));
         BluetoothGattCharacteristic read = s.getCharacteristic(UUID.fromString(cid));
-        mBleGatt.readCharacteristic(read);
+        gatt.readCharacteristic(read);
     }
 
     @Nullable
@@ -382,5 +401,4 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             e.printStackTrace();
         }
     }
-
 }
