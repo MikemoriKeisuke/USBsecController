@@ -137,9 +137,20 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         // for ActivityCompat#requestPermissions for more details.
                         return;
                     }
+
+                    //緯度経度取得
+                    Location myLocate = locationManager.getLastKnownLocation("gps");
+                    double latitude = myLocate.getLatitude();
+                    double longitude = myLocate.getLongitude();
+                    Log.d(TAG, latitude  + " " + longitude);
+
                     tempList.add(getLastLocation());
                     disconnList.put(mBleGatt.getDevice().getAddress(), tempList);
                     String macaddress = mBleGatt.getDevice().getAddress();
+
+                    //位置情報書き込み
+                    PositionSave(macaddress,latitude,longitude);
+
                     deviceHash.remove(macaddress);
                     gattMap.remove(macaddress);
                     mBleGatt.close();
