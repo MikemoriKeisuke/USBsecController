@@ -4,7 +4,7 @@
     android:opacity="opaque">
 
     <item
-        android:drawable="@color/secondary_text"/>
+        android:drawable="@color/splash_dark"/>
 
     <item
         android:drawable="@drawable/ic_top"
