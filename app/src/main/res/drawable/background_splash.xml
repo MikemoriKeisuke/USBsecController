@@ -8,6 +8,6 @@
 
     <item
         android:drawable="@drawable/ic_top"
-        android:gravity="center" />
+        android:gravity="center"/>
 
 </layer-list>
