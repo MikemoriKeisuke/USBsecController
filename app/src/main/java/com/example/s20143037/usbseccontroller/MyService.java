@@ -41,7 +41,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -401,4 +404,67 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             e.printStackTrace();
         }
     }
+
+    //新USBメモリ追加
+    //macアドレス,名前、PINコードの追加
+    public void NewUSBAdd (String mac, String pin){
+        OutputStream out;
+
+        try {
+            out = openFileOutput("USBsec.txt",MODE_PRIVATE|MODE_APPEND);
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(out,"UTF-8"));
+            //追記する
+            writer.append(mac + "," + pin + "\n");
+            writer.close();
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+    }
+
+    //PINコード取り出し
+    public String PINCodeJudgment (String mac) {
+        InputStream in;
+        String lineBuffer;
+        String work = "";
+        mac = mac.replaceAll(":","");
+        try {
+            in = openFileInput("USBsec.txt");
+            BufferedReader reader= new BufferedReader(new InputStreamReader(in,"UTF-8"));
+            while( (lineBuffer = reader.readLine()) != null ) {
+                String fruit[]= lineBuffer.split(",", 0);
+                if(fruit[0].equals(mac)){
+                    work = fruit[1];
+                }
+            }
+
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+        return work;
+    }
+
+    public boolean PINCodeDecision(String mac) {
+        InputStream in;
+        String lineBuffer;
+        boolean work = false;
+        mac = mac.replaceAll(":","");
+        try {
+            in = openFileInput("USBsec.txt");
+            BufferedReader reader= new BufferedReader(new InputStreamReader(in,"UTF-8"));
+            while( (lineBuffer = reader.readLine()) != null ) {
+                String fruit[]= lineBuffer.split(",", 0);
+                if(fruit[0].equals(mac)){
+                    work = true;
+                }
+            }
+
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+        return work;
+    }
+
 }
