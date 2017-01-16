@@ -162,6 +162,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                     tempList.add(getLastLocation());
                     disconnList.put(mBleGatt.getDevice().getAddress(), tempList);
                     String macaddress = mBleGatt.getDevice().getAddress();
+                    PositionSave(macaddress, getLastLocation().getLatitude(), getLastLocation().getLongitude());
 
 
                     deviceHash.remove(macaddress);
