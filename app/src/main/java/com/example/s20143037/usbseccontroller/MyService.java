@@ -57,6 +57,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient mLocationClient;
     LocationManager locationManager;
+    HashMap<String,byte[]> acceptPinMap=new HashMap<>();
     private final static int SDKVER_LOLLIPOP = 21;
     private final static int MESSAGE_NEW_RECEIVEDNUM = 0;
     private final static int MESSAGE_NEW_SENDNUM = 1;
@@ -100,9 +101,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         @Override
         public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
             // スキャン中に見つかったデバイスに接続を試みる.第三引数には接続後に呼ばれるBluetoothGattCallbackを指定する.
-
             mBleGatt = device.connectGatt(getApplicationContext(), false, mGattCallback);
-
         }
     };
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
@@ -139,18 +138,31 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         return;
                     }
 
-                    //緯度経度取得
-                    Location myLocate = locationManager.getLastKnownLocation("gps");
-                    double latitude = myLocate.getLatitude();
-                    double longitude = myLocate.getLongitude();
-                    Log.d(TAG, latitude  + " " + longitude);
+                    if(acceptPinMap.containsKey(gatt.getDevice().getAddress())) {
+                        Intent intent = new Intent(main, CardListActivity.class);
+                        Intent[] i = new Intent[1];
+                        i[0] = intent;
+                        PendingIntent pi = PendingIntent.getActivities(main, 0, i, 0);
 
+                        Notification notification = new Notification.Builder(main)
+                                .setContentTitle("切れちゃったよ")
+                                .setContentText("どうにかしてよ")
+                                .setContentIntent(pi)
+                                .setSmallIcon(R.drawable.ic_sec)
+                                .setLocalOnly(true)
+                                .build();
+
+                        //削除できないように設定
+                        //        notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
+                        NotificationManager nm = (NotificationManager) main.getSystemService(Context.NOTIFICATION_SERVICE);
+                        nm.notify(0, notification);
+
+                    }
                     tempList.add(getLastLocation());
                     disconnList.put(mBleGatt.getDevice().getAddress(), tempList);
                     String macaddress = mBleGatt.getDevice().getAddress();
 
-                    //位置情報書き込み
-                    PositionSave(macaddress,latitude,longitude);
 
                     deviceHash.remove(macaddress);
                     gattMap.remove(macaddress);
@@ -158,6 +170,12 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                     mBleGatt = null;
                 }
                 mIsBluetoothEnable = false;
+            }
+        }
+        @Override
+        public void onCharacteristicWrite(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic,int a){
+            if(UUID.fromString("0000a021-0000-1000-8000-00805f9b34fb").equals(characteristic.getUuid())){
+
             }
         }
         @Override
@@ -171,11 +189,23 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                     addAbleMap.put(gatt.getDevice().getAddress(),false);
                 }
             }
-        }
+            if(UUID.fromString("0000a041-0000-1000-8000-00805f9b34fb").equals(characteristic.getUuid())){
+                byte temp=value[0];
+                if(temp==(byte)1){
+                    String macAddress=gatt.getDevice().getAddress();
+                    acceptPinMap.put(macAddress,pinMap.get(macAddress));
+                }
+            }}
         @Override
+
         public void onServicesDiscovered(BluetoothGatt gatt,int status){
             if(gatt.getService(UUID.fromString("0000a001-0000-1000-8000-00805f9b34fb"))!=null){
-                readCharacteristic(gatt.getDevice().getAddress(),"0000a001-0000-1000-8000-00805f9b34fb","0000a012-0000-1000-8000-00805f9b34fb");
+                readCharacteristic(gatt.getDevice().getAddress(), "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
+            }
+            if(gatt.getService(UUID.fromString("0000a002-0000-1000-8000-00805f9b34fb"))!=null){
+                if(acceptPinMap.containsKey(gatt.getDevice().getAddress())) {
+                    writeCharacteristic(gatt.getDevice().getAddress(),"0000a002-0000-1000-8000-00805f9b34fb","0000a021-0000-1000-8000-00805f9b34fb",acceptPinMap.get(gatt.getDevice().getAddress()));
+                }
             }
         }
     };
@@ -240,7 +270,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                 new ScanSettings.Builder()
                         .setScanMode(ScanSettings.SCAN_MODE_LOW_POWER)
                         .build();
-
         // BLEが使用可能ならスキャン開始.
         this.scanNewDevice();
         mBleScanner.startScan(scanFilterList, scanSettings, ble);
