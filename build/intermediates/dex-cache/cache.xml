@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="a208cc498c0e8582c72d51b462a67bc1a02c5d36">
+        sha1="5dd5480c93da37a4047798847540c5e79321a7d0">
         <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ee006cff8d159e146805eb064a918c9d6260d6a9\classes.dex" />
     </item>
     <item
@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="e5a85515ddf98fa82ecc82d1be7c04f3d2de96e7">
+        sha1="82f996118bc1bbe5b63aca42105b556eefea96d2">
         <dex dex="C:\Users\kento\Desktop\git\USBsecController\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_54e493c2e5e7c869cbd8796ffab0d3c0dfc57422\classes.dex" />
     </item>
     <item

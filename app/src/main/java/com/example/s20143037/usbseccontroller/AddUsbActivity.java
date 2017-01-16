@@ -43,12 +43,17 @@ public class AddUsbActivity extends AppCompatActivity implements TextWatcher {
         MyService.pinMap.put(mac,bcomm);
         MyService.writeCharacteristic(mac,"0000a001-0000-1000-8000-00805f9b34fb","0000a011-0000-1000-8000-00805f9b34fb",bcomm);
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         MyService.writeCharacteristic(mac,"0000a002-0000-1000-8000-00805f9b34fb","0000a021-0000-1000-8000-00805f9b34fb",bcomm);
-
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        MyService.readCharacteristic(mac,"0000a004-0000-1000-8000-00805f9b34fb","0000a041-0000-1000-8000-00805f9b34fb");
 
     }
 
