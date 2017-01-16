@@ -31,23 +31,11 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     private double latitude = 43.061105;
     private double longitude = 141.356432;
     private String caption = "2016/12/12";
-    String work[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_map);
-        String macAddress = getIntent().getStringExtra("macAddress");
-        locationList = MyService.getLocationList(macAddress);
-
-        work = PositionRead(macAddress).split(",", 0);
-        if (work.equals(null)) {
-            caption = work[1];
-            latitude = Double.parseDouble(work[2]);
-            longitude = Double.parseDouble(work[3]);
-        } else {
-            Toast.makeText(this, "まだ使用履歴がありません。", Toast.LENGTH_LONG).show();
-        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
