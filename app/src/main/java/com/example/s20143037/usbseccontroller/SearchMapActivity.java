@@ -47,14 +47,20 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
+        String macAddress = getIntent().getStringExtra("macAddress");
+        String work[] = PositionRead(macAddress).split(",", 0);
+        caption = work[0];
+        latitude = Double.parseDouble(work[1]);
+        longitude = Double.parseDouble(work[2]);
         LatLng location = new LatLng(latitude, longitude);
-        if (locationList != null) {
-            for (Location tempLoc : locationList) {
-                location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
-            }
-        }
 
+//        if (locationList != null) {
+//            for (Location tempLoc : locationList) {
+//                location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
+//                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
+//            }
+//        }
+        mMap.addMarker(new MarkerOptions().position(location).title(caption));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
@@ -100,7 +106,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             while ((lineBuffer = reader.readLine()) != null) {
-                str += lineBuffer + "\n";
+                str = lineBuffer + "\n";
             }
         } catch (IOException e) {
             // TODO 自動生成された catch ブロック
