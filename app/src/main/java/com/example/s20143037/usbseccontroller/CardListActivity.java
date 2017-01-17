@@ -191,6 +191,8 @@ public class CardListActivity extends AppCompatActivity  {
                                     mAdapter.addAdapter("null  :  " + key);
                                 } else {
                                     mAdapter.addAdapter(dev + "  :  " + key);
+                                    MyService.sendAuth(key);
+
                                 }
                             }
                         }

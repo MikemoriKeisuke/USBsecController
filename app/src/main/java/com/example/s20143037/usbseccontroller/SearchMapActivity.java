@@ -48,25 +48,31 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
         String macAddress = getIntent().getStringExtra("macAddress");
+
+
         String work[] = PositionRead(macAddress).split(",", 0);
-        caption = work[0];
-        latitude = Double.parseDouble(work[1]);
-        longitude = Double.parseDouble(work[2]);
-        LatLng location = new LatLng(latitude, longitude);
+        if (work[0].equals(null)) {
+            Toast.makeText(this, "使用履歴がありません", Toast.LENGTH_LONG).show();
+        } else {
+            caption = work[0];
+            latitude = Double.parseDouble(work[1]);
+            longitude = Double.parseDouble(work[2]);
+            LatLng location = new LatLng(latitude, longitude);
 
-//        if (locationList != null) {
-//            for (Location tempLoc : locationList) {
-//                location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
-//                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
-//            }
-//        }
-        mMap.addMarker(new MarkerOptions().position(location).title(caption));
+            //        if (locationList != null) {
+            //            for (Location tempLoc : locationList) {
+            //                location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
+            //                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
+            //            }
+            //        }
+            mMap.addMarker(new MarkerOptions().position(location).title(caption));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
-        mMap.moveCamera(cUpdate);
-        if (Build.VERSION.SDK_INT >= 23) {
-            checkPermission();
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
+            mMap.moveCamera(cUpdate);
+            if (Build.VERSION.SDK_INT >= 23) {
+                checkPermission();
+            }
         }
     }
 
@@ -99,14 +105,12 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
         String lineBuffer;
         String str = "";
 
-        mac = mac.replaceAll(":", "");
-
         try {
             in = openFileInput(mac + ".txt");
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             while ((lineBuffer = reader.readLine()) != null) {
-                str = lineBuffer + "\n";
+                str = lineBuffer;
             }
         } catch (IOException e) {
             // TODO 自動生成された catch ブロック

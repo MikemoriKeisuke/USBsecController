@@ -406,7 +406,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
     //位置情報保存
     //macアドレスと緯度経度を渡すと最新の分のみ保存するよ
-    //追加するよの方を使えば追加保存になるよ
     public void PositionSave(String mac, double latitude, double longitude) {
         OutputStream out;
 
@@ -414,21 +413,23 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日");
 
         try {
-            out = openFileOutput((mac + ".txt"), MODE_PRIVATE | MODE_APPEND);
+            out = openFileOutput((mac + ".txt"), MODE_PRIVATE);
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
 
             //上書きするよ
-            writer.write(sdf.format(date.getTime()) + "," + latitude + "," + longitude + "\n");
-
-            //追加するよ
-//            writer.append(sdf.format(date.getTime()) + "," + latitude + "," + longitude + "\n");
+            writer.write(sdf.format(date.getTime()) + "," + latitude + "," + longitude);
 
             writer.close();
-
 
         } catch (IOException e) {
             // TODO 自動生成された catch ブロック
             e.printStackTrace();
+        }
+    }
+    static void sendAuth(String mac){
+        byte[] pin =pinMap.get(mac);
+        if(pin!=null) {
+            writeCharacteristic(mac, "0000a002-0000-1000-8000-00805f9b34fb", "0000a021-0000-1000-8000-00805f9b34fb", pin);
         }
     }
 }
