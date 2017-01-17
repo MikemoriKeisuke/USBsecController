@@ -48,15 +48,9 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
         String macAddress = getIntent().getStringExtra("macAddress");
-
-
-        String work[] = PositionRead(macAddress).split(",", 0);
-        if (work[0].equals(null)) {
+        ArrayList<String> position=PositionRead(macAddress);
+        if (position.size()<1) {
             Toast.makeText(this, "使用履歴がありません", Toast.LENGTH_LONG).show();
-        } else {
-            caption = work[0];
-            latitude = Double.parseDouble(work[1]);
-            longitude = Double.parseDouble(work[2]);
             LatLng location = new LatLng(latitude, longitude);
 
             //        if (locationList != null) {
@@ -65,8 +59,6 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
             //                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
             //            }
             //        }
-            mMap.addMarker(new MarkerOptions().position(location).title(caption));
-
             mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
             CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
             mMap.moveCamera(cUpdate);
@@ -74,7 +66,30 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 checkPermission();
             }
         }
-    }
+        for(String temp:position) {
+            String work[] =temp.split(",", 0);
+                caption = work[0];
+                latitude = Double.parseDouble(work[1]);
+                longitude = Double.parseDouble(work[2]);
+                LatLng location = new LatLng(latitude, longitude);
+
+                //        if (locationList != null) {
+                //            for (Location tempLoc : locationList) {
+                //                location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
+                //                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
+                //            }
+                //        }
+                mMap.addMarker(new MarkerOptions().position(location).title(caption));
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
+                mMap.moveCamera(cUpdate);
+                if (Build.VERSION.SDK_INT >= 23) {
+                    checkPermission();
+                }
+            }
+        }
+
 
 
     // 位置情報許可の再確認
@@ -100,17 +115,18 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
 
     //位置情報読み込み
     //macアドレスから取得
-    public String PositionRead(String mac) {
+    public ArrayList<String> PositionRead(String mac) {
         InputStream in;
         String lineBuffer;
-        String str = "";
+        ArrayList<String> str =new ArrayList<>();
+        int i=0;
 
         try {
             in = openFileInput(mac + ".txt");
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             while ((lineBuffer = reader.readLine()) != null) {
-                str = lineBuffer;
+                 str.add(lineBuffer);
             }
         } catch (IOException e) {
             // TODO 自動生成された catch ブロック

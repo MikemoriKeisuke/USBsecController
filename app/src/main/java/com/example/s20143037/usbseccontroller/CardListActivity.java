@@ -155,10 +155,7 @@ public class CardListActivity extends AppCompatActivity  {
                 });
                 final ArrayList<String> DataSet = new ArrayList<>();
 
-                ArrayList<String>list=new ArrayList<>();
-
-                list.add("存在しません  :  20:20:20:20:20:20");
-                mAdapter=new UsbAdapter(context,list);
+                mAdapter=new UsbAdapter(context);
 
                 while (true) {
                     if (destory) {
@@ -212,6 +209,7 @@ public class CardListActivity extends AppCompatActivity  {
             }
 
         });
+
         running.start();
 
     }
@@ -285,7 +283,13 @@ public class CardListActivity extends AppCompatActivity  {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // TODO 自動生成されたメソッド・スタブ
+                            CardListActivity.this.destory=true;
                             CardListActivity.this.finish();
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -301,6 +305,7 @@ public class CardListActivity extends AppCompatActivity  {
         }
         return false;
     }
+
     static String getMacAddress(String title){
         String temp="";
         String mac=title;

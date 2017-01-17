@@ -28,11 +28,11 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
 
     int count=0;
 
-    public UsbAdapter(Context context, ArrayList<String> dataList) {
+    public UsbAdapter(Context context) {
         super();
         contxt=context;
         onLayoutInflater = LayoutInflater.from(context);
-        onDataList = dataList;
+        onDataList = new ArrayList<>();
         onBoolean=new ArrayList<>();
         while(count<onDataList.size()){
             onBoolean.add(false);

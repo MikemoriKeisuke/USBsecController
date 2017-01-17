@@ -22,6 +22,7 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -71,7 +72,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     static BluetoothGatt mBleGatt;
     static HashMap<String,Boolean> addAbleMap=new HashMap<>();
     static HashMap<String,byte[]> pinMap=new HashMap<>();
-    Service main;
+    static Service service;
     static Location location;
     static HashMap<String, BluetoothGatt> gattMap = new HashMap<>();
     private String mStrSendNum = "";
@@ -130,7 +131,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                     //MapControllerの取得
                     //LocationManagerの取得
                     //GPSから現在地の情報を取得
-                    if (ActivityCompat.checkSelfPermission(main, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(main, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(service, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(service, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
                         //    ActivityCompat#requestPermissions
                         // here to request the missing permissions, and then overriding
@@ -142,12 +143,12 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                     }
 
                     if(acceptPinMap.containsKey(gatt.getDevice().getAddress())) {
-                        Intent intent = new Intent(main, CardListActivity.class);
+                        Intent intent = new Intent(service, CardListActivity.class);
                         Intent[] i = new Intent[1];
                         i[0] = intent;
-                        PendingIntent pi = PendingIntent.getActivities(main, 0, i, 0);
+                        PendingIntent pi = PendingIntent.getActivities(service, 0, i, 0);
 
-                        Notification notification = new Notification.Builder(main)
+                        Notification notification = new Notification.Builder(service)
                                 .setContentTitle("切れちゃったよ")
                                 .setContentText("どうにかしてよ")
                                 .setContentIntent(pi)
@@ -158,7 +159,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         //削除できないように設定
                         //        notification.flags |= Notification.FLAG_ONGOING_EVENT;
 
-                        NotificationManager nm = (NotificationManager) main.getSystemService(Context.NOTIFICATION_SERVICE);
+                        NotificationManager nm = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
                         nm.notify(0, notification);
 
                     }
@@ -179,7 +180,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         @Override
         public void onCharacteristicWrite(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic,int a){
             if(UUID.fromString("0000a021-0000-1000-8000-00805f9b34fb").equals(characteristic.getUuid())){
-
             }
         }
         @Override
@@ -198,6 +198,8 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                 if(temp==(byte)1){
                     String macAddress=gatt.getDevice().getAddress();
                     acceptPinMap.put(macAddress,pinMap.get(macAddress));
+                    String as=pinMap.get(macAddress).toString();
+                    NewUSBAdd(macAddress,pinMap.get(macAddress));
                 }
             }}
         @Override
@@ -231,8 +233,8 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
     @Override
     public void onCreate() {
-        main = this;
-        locationManager = (LocationManager) main.getSystemService(Context.LOCATION_SERVICE);
+        service = this;
+        locationManager = (LocationManager) service.getSystemService(Context.LOCATION_SERVICE);
         Intent intent = new Intent(this, CardListActivity.class);
         Intent[] i = new Intent[1];
         i[0] = intent;
@@ -346,7 +348,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         if (c == null) {
             return null;
         }
-        BluetoothGattCharacteristic asda = c;
         return c;
 
     }
@@ -416,7 +417,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日");
 
         try {
-            out = openFileOutput((mac + ".txt"), MODE_PRIVATE);
+            out = openFileOutput((mac + ".txt"), MODE_PRIVATE|MODE_APPEND);
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
 
             //上書きするよ
@@ -431,36 +432,22 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     }
     static void sendAuth(String mac){
         byte[] pin =pinMap.get(mac);
+        byte[] SPin=PINCodeJudgment(mac);
         if(pin!=null) {
+            writeCharacteristic(mac, "0000a002-0000-1000-8000-00805f9b34fb", "0000a021-0000-1000-8000-00805f9b34fb", pin);
+        }else if(SPin!=null){
+            pin=SPin;
             writeCharacteristic(mac, "0000a002-0000-1000-8000-00805f9b34fb", "0000a021-0000-1000-8000-00805f9b34fb", pin);
         }
     }
-
-    //新USBメモリ追加
-    //macアドレス,名前、PINコードの追加
-    public void NewUSBAdd (String mac, String pin){
-        OutputStream out;
-
-        try {
-            out = openFileOutput("USBsec.txt",MODE_PRIVATE|MODE_APPEND);
-            PrintWriter writer = new PrintWriter(new OutputStreamWriter(out,"UTF-8"));
-            //追記する
-            writer.append(mac + "," + pin + "\n");
-            writer.close();
-        } catch (IOException e) {
-            // TODO 自動生成された catch ブロック
-            e.printStackTrace();
-        }
-    }
-
     //PINコード取り出し
-    public String PINCodeJudgment (String mac) {
+    static byte[] PINCodeJudgment (String mac) {
         InputStream in;
         String lineBuffer;
         String work = "";
-        mac = mac.replaceAll(":","");
+        ContextWrapper contwr=new ContextWrapper(service.getBaseContext());
         try {
-            in = openFileInput("USBsec.txt");
+            in = contwr.openFileInput("USBsec.txt");
             BufferedReader reader= new BufferedReader(new InputStreamReader(in,"UTF-8"));
             while( (lineBuffer = reader.readLine()) != null ) {
                 String fruit[]= lineBuffer.split(",", 0);
@@ -473,7 +460,19 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             // TODO 自動生成された catch ブロック
             e.printStackTrace();
         }
-        return work;
+        String[] pin=work.split(":");
+        byte[] word=new byte[pin.length];
+        int i=0;
+        for(String temp:pin){
+            try {
+                int tei = Integer.parseInt(temp);
+                word[i] = (byte) tei;
+            }catch (Exception e){
+
+            }
+            i++;
+        }
+        return word;
     }
 
     //PINコード判定
@@ -481,7 +480,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         InputStream in;
         String lineBuffer;
         boolean work = false;
-        mac = mac.replaceAll(":","");
+
         try {
             in = openFileInput("USBsec.txt");
             BufferedReader reader= new BufferedReader(new InputStreamReader(in,"UTF-8"));
@@ -498,4 +497,28 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         }
         return work;
     }
+
+    //新USBメモリ追加
+    //macアドレス,名前、PINコードの追加
+    public void NewUSBAdd (String mac, byte[] pin){
+        OutputStream out;
+
+        try {
+            out = openFileOutput("USBsec.txt",MODE_PRIVATE|MODE_APPEND);
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(out,"UTF-8"));
+            //追記する
+            String pinS="";
+            for(byte temp:pin){
+                int a=(int)temp;
+                pinS=pinS+Integer.toString(temp)+":";
+            }
+            writer.append(mac + "," + pinS + "\n");
+            writer.close();
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+    }
+
+
 }
