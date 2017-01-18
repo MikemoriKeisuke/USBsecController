@@ -154,8 +154,8 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         PendingIntent pi = PendingIntent.getActivities(service, 0, i, 0);
 
                         Notification notification = new Notification.Builder(service)
-                                .setContentTitle("切れちゃったよ")
-                                .setContentText("どうにかしてよ")
+                                .setContentTitle("USBsecが切断されました")
+                                .setContentText("")
                                 .setContentIntent(pi)
                                 .setSmallIcon(R.drawable.ic_sec)
                                 .setDefaults(Notification.DEFAULT_ALL)
@@ -247,8 +247,8 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         PendingIntent pi = PendingIntent.getActivities(this, 0, i, 0);
 
         Notification notification = new Notification.Builder(this)
-                .setContentTitle("できた")
-                .setContentText("うんこ")
+                .setContentTitle("探索を開始しました")
+                .setContentText("付近にあるUSBsecを探しています")
                 .setContentIntent(pi)
                 .setSmallIcon(R.drawable.ic_sec)
                 .setLocalOnly(true)

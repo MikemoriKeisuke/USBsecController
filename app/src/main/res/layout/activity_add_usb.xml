@@ -72,7 +72,7 @@
                 android:id="@+id/AddUsbButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button"
+                android:text="認証"
                 android:layout_marginTop="40dp"
                 android:onClick="intentAddComp"
                 style="@style/submitButton"/>
