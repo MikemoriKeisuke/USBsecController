@@ -33,6 +33,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcel;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -116,6 +117,10 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 //                // 接続に成功したらサービスを検索する.
 //                Log.d(this.toString(), "終わりました")
 
+                Vibrator v = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+                long[] pattern = {10, 10, 100, 10};
+                v.vibrate(pattern, -1);
+
                 gatt.discoverServices();
                 BluetoothDevice b = gatt.getDevice();
                 deviceHash.put(b.getAddress(), b.getName());
@@ -153,6 +158,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                                 .setContentText("どうにかしてよ")
                                 .setContentIntent(pi)
                                 .setSmallIcon(R.drawable.ic_sec)
+                                .setDefaults(Notification.DEFAULT_ALL)
                                 .setLocalOnly(true)
                                 .build();
 
@@ -414,7 +420,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         OutputStream out;
 
         Calendar date = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日 kk時mm分");
 
         try {
             out = openFileOutput((mac + ".txt"), MODE_PRIVATE|MODE_APPEND);
