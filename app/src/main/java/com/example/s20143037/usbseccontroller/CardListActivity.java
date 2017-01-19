@@ -19,6 +19,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,7 +48,20 @@ public class CardListActivity extends AppCompatActivity  {
     Thread running;
     BluetoothAdapter ba;
     final HashMap<String,String> x= new HashMap();
-
+    private static final int MENU_ID_A=0;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE,MENU_ID_A,Menu.NONE,"表示されないUSBsecの探索");
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case MENU_ID_A:
+                Intent intent=new Intent(getApplicationContext(),LocationListActivity.class);
+                startActivity(intent);
+        }
+        return false;
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {

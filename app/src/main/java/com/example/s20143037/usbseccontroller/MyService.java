@@ -44,6 +44,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -445,6 +446,25 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             pin=SPin;
             writeCharacteristic(mac, "0000a002-0000-1000-8000-00805f9b34fb", "0000a021-0000-1000-8000-00805f9b34fb", pin);
         }
+    }
+    static ArrayList<String> allMacAddress(){
+        InputStream in;
+        ArrayList<String > result=new ArrayList<>();
+        ContextWrapper contwr=new ContextWrapper(service.getBaseContext());
+        String lineBuffer;
+        try {
+            in = contwr.openFileInput("USBsec.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+
+            while((lineBuffer = reader.readLine()) != null ){
+                String fruit[]= lineBuffer.split(",", 0);
+                result.add(fruit[0]);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return result;
     }
     //PINコード取り出し
     static byte[] PINCodeJudgment (String mac) {
