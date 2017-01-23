@@ -48,7 +48,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
         String macAddress = getIntent().getStringExtra("macAddress");
-        ArrayList<String> position=PositionRead(macAddress);
+        ArrayList<String> position=MyService.PositionRead(macAddress);
         if (position.size()<1) {
             Toast.makeText(this, "使用履歴がありません", Toast.LENGTH_LONG).show();
             LatLng location = new LatLng(latitude, longitude);
@@ -70,6 +70,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
             String work[] =temp.split(",", 0);
                 caption = work[0];
                 latitude = Double.parseDouble(work[1]);
+
                 longitude = Double.parseDouble(work[2]);
                 LatLng location = new LatLng(latitude, longitude);
 
@@ -113,26 +114,5 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
 //        }
     }
 
-    //位置情報読み込み
-    //macアドレスから取得
-    public ArrayList<String> PositionRead(String mac) {
-        InputStream in;
-        String lineBuffer;
-        ArrayList<String> str =new ArrayList<>();
-        int i=0;
-
-        try {
-            in = openFileInput(mac + ".txt");
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-            while ((lineBuffer = reader.readLine()) != null) {
-                 str.add(lineBuffer);
-            }
-        } catch (IOException e) {
-            // TODO 自動生成された catch ブロック
-            e.printStackTrace();
-        }
-        return str;
-    }
 
 }

@@ -364,12 +364,14 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     }
 
     public static void writeCharacteristic(String address, String sid, String cid, byte[] comment) {
-        BluetoothGatt gatt = gattMap.get(address);
-        BluetoothGattCharacteristic write = getCharacteristic(
-                sid, cid, gatt);
-        byte[] message = comment;
-        write.setValue(message);
-        gatt.writeCharacteristic(write);
+        if(comment!=null) {
+            BluetoothGatt gatt = gattMap.get(address);
+            BluetoothGattCharacteristic write = getCharacteristic(
+                    sid, cid, gatt);
+            byte[] message = comment;
+            write.setValue(message);
+            gatt.writeCharacteristic(write);
+        }
     }
 
     public static BluetoothGattCharacteristic getCharacteristic(String sid, String cid, BluetoothGatt gatt) {
@@ -422,13 +424,13 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
         Calendar date = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日 kk時mm分");
-
+        deleteFile(mac );
         try {
             out = openFileOutput((mac + ".txt"), MODE_PRIVATE|MODE_APPEND);
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
 
             //上書きするよ
-            writer.write(sdf.format(date.getTime()) + "," + latitude + "," + longitude);
+            writer.write(sdf.format(date.getTime()) + "," + latitude + "," + longitude+"\n");
 
             writer.close();
 
@@ -545,6 +547,26 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             e.printStackTrace();
         }
     }
+    //位置情報読み込み
+    //macアドレスから取得
+    static ArrayList<String> PositionRead(String mac) {
+        InputStream in;
+        String lineBuffer;
+        ArrayList<String> str =new ArrayList<>();
+        int i=0;
 
+        try {
+            service.deleteFile(mac+".txt");
+            in = service.openFileInput(mac + ".txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+            while ((lineBuffer = reader.readLine()) != null) {
+                str.add(lineBuffer);
+            }
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+        return str;
+    }
 
 }

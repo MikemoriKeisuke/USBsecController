@@ -28,6 +28,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,9 +53,12 @@ public class CardListActivity extends AppCompatActivity  {
     BluetoothAdapter ba;
     final HashMap<String,String> x= new HashMap();
     private static final int MENU_ID_A=0;
+    private static final int MENU_ID_B=1;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE,MENU_ID_A,Menu.NONE,"表示されないUSBsecの探索");
+        menu.add(Menu.NONE,MENU_ID_B,menu.NONE,"すべての履歴の削除");
+
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item){
@@ -59,6 +66,24 @@ public class CardListActivity extends AppCompatActivity  {
             case MENU_ID_A:
                 Intent intent=new Intent(getApplicationContext(),LocationListActivity.class);
                 startActivity(intent);
+                break;
+            case MENU_ID_B:
+                new AlertDialog.Builder(main).setTitle("すべての履歴を削除します。よろしいですか？")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ArrayList<String> macList = MyService.allMacAddress();
+                                InputStream in;
+                                String lineBuffer;
+                                for (String mac:macList) {
+
+                                    deleteFile(mac + ".txt");
+
+                                }
+                            }
+                        })
+                .setNegativeButton("Cancel",null)
+                .show();
         }
         return false;
     }
@@ -69,11 +94,10 @@ public class CardListActivity extends AppCompatActivity  {
                 ba=BluetoothAdapter.getDefaultAdapter();
                 if (grantResults.length > 0 && ba.isEnabled()) {
 
-                    final Intent intent=new Intent(this, MyService.class);
-                    startService(intent);
                     //許可された場合の処理
                 }else{
                     //拒否された場合の処理
+                    finish();
                 }
                 break;
             }
@@ -154,6 +178,9 @@ public class CardListActivity extends AppCompatActivity  {
                 // 実行中のｻｰﾋﾞｽと一致
                 Toast.makeText(this, "ｻｰﾋﾞｽ実行中", Toast.LENGTH_LONG).show();
                 found = true;
+            }else{
+                final Intent intent=new Intent(this, MyService.class);
+                startService(intent);
             }
         }
 
