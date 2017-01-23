@@ -3,6 +3,7 @@ package com.example.s20143037.usbseccontroller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ public class LocationListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         HashMap<String,String[]> locationMap=new HashMap<>();
         final ListView listView=(ListView) findViewById(R.id.location_list);
         ArrayList<String> macList=MyService.allMacAddress();
@@ -72,5 +74,10 @@ public class LocationListActivity extends AppCompatActivity {
             macAddress=title.substring(0,17);
         }
         return macAddress;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

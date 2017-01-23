@@ -57,7 +57,7 @@ public class CardListActivity extends AppCompatActivity  {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE,MENU_ID_A,Menu.NONE,"表示されないUSBsecの探索");
-        menu.add(Menu.NONE,MENU_ID_B,menu.NONE,"すべての履歴の削除");
+        menu.add(Menu.NONE,MENU_ID_B,menu.NONE,"接続履歴の削除");
 
         return true;
     }
@@ -68,8 +68,8 @@ public class CardListActivity extends AppCompatActivity  {
                 startActivity(intent);
                 break;
             case MENU_ID_B:
-                new AlertDialog.Builder(main).setTitle("すべての履歴を削除します。よろしいですか？")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(main).setTitle("すべての接続履歴を削除します。\nよろしいですか？")
+                        .setPositiveButton("はい", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ArrayList<String> macList = MyService.allMacAddress();
@@ -82,7 +82,7 @@ public class CardListActivity extends AppCompatActivity  {
                                 }
                             }
                         })
-                .setNegativeButton("Cancel",null)
+                .setNegativeButton("いいえ",null)
                 .show();
         }
         return false;
