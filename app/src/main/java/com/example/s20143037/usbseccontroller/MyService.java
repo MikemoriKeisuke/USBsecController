@@ -117,7 +117,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             if (newState == BluetoothProfile.STATE_CONNECTED) {
 //                // 接続に成功したらサービスを検索する.
 //                Log.d(this.toString(), "終わりました")
-
                 Vibrator v = (Vibrator)getSystemService(VIBRATOR_SERVICE);
                 long[] pattern = {10, 10, 100, 10};
                 v.vibrate(pattern, -1);
@@ -285,7 +284,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         .build();
         // BLEが使用可能ならスキャン開始.
         this.scanNewDevice();
-        mBleScanner.startScan(scanFilterList, scanSettings, ble);
+//        mBleScanner.startScan(scanFilterList, scanSettings, ble);
         //gps起動
         Context context = this;
         mLocationClient = new GoogleApiClient.Builder(context)

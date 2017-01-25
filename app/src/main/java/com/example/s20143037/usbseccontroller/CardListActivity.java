@@ -166,7 +166,7 @@ public class CardListActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_card_list);
         nlLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
-        mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
+        //mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
@@ -251,7 +251,11 @@ public class CardListActivity extends AppCompatActivity  {
             }
 
         });
-
+        if(mAdapter.getItemCount()==0) {
+            mRecyclerView.setBackground(getDrawable(R.drawable.during_search));
+        }else{
+            mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
+        }
         running.start();
 
     }
