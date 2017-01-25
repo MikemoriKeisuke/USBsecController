@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class LocationListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         HashMap<String,String[]> locationMap=new HashMap<>();
         final ListView listView=(ListView) findViewById(R.id.location_list);
@@ -35,6 +38,12 @@ public class LocationListActivity extends AppCompatActivity {
                 tempArray[i] = temp+":"+tempList.get(tempList.size() - 1);
             }
             i++;
+        }
+
+        //0件の場合、ピクトグラム表示
+        if(tempArray.length==0){
+            RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_location_list);
+            layout.setBackgroundResource(R.drawable.no_history);
         }
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,tempArray);
         listView.setAdapter(adapter);
