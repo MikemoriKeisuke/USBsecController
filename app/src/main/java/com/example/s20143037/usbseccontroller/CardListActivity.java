@@ -248,14 +248,15 @@ public class CardListActivity extends AppCompatActivity  {
                         });
                     }
                 }
+                if(mAdapter.getItemCount()==0) {
+                    mRecyclerView.setBackground(getDrawable(R.drawable.during_search));
+                }else{
+                    mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
+                }
             }
 
         });
-        if(mAdapter.getItemCount()==0) {
-            mRecyclerView.setBackground(getDrawable(R.drawable.during_search));
-        }else{
-            mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
-        }
+
         running.start();
 
     }
