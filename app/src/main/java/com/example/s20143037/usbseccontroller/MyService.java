@@ -216,9 +216,8 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                 readCharacteristic(gatt.getDevice().getAddress(), "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
             }
             if(gatt.getService(UUID.fromString("0000a002-0000-1000-8000-00805f9b34fb"))!=null){
-                if(acceptPinMap.containsKey(gatt.getDevice().getAddress())) {
-                    writeCharacteristic(gatt.getDevice().getAddress(),"0000a002-0000-1000-8000-00805f9b34fb","0000a021-0000-1000-8000-00805f9b34fb",acceptPinMap.get(gatt.getDevice().getAddress()));
-                }
+                    sendAuth(gatt.getDevice().getAddress());
+
             }
         }
     };
@@ -284,8 +283,20 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         .setScanMode(ScanSettings.SCAN_MODE_LOW_POWER)
                         .build();
         // BLEが使用可能ならスキャン開始.
-        this.scanNewDevice();
-        mBleScanner.startScan(scanFilterList, scanSettings, ble);
+       while(true) {
+            if (!(mBleAdapter == null )|| (!mBleAdapter.isEnabled())) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                this.scanNewDevice();
+                if(mBleScanner!=null) {
+                    mBleScanner.startScan(scanFilterList, scanSettings, ble);
+                    break;
+                }
+            }
+        }
         //gps起動
         Context context = this;
         mLocationClient = new GoogleApiClient.Builder(context)
@@ -374,8 +385,10 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         }
     }
 
-    public static BluetoothGattCharacteristic getCharacteristic(String sid, String cid, BluetoothGatt gatt) {
-        BluetoothGattService s = gatt.getService(UUID.fromString(sid));
+
+        public static BluetoothGattCharacteristic getCharacteristic(String sid, String cid, BluetoothGatt gatt) {
+            UUID suuid=UUID.fromString(sid);
+        BluetoothGattService s = gatt.getService(suuid);
         if (s == null) {
             Log.w(TAG, "Service NoT found :" + sid);
             return null;
@@ -424,7 +437,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
         Calendar date = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 E曜日 kk時mm分");
-        deleteFile(mac );
         try {
             out = openFileOutput((mac + ".txt"), MODE_PRIVATE|MODE_APPEND);
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
@@ -489,7 +501,9 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             e.printStackTrace();
         }
         String[] pin=work.split(":");
+
         byte[] word=new byte[pin.length];
+
         int i=0;
         for(String temp:pin){
             try {
