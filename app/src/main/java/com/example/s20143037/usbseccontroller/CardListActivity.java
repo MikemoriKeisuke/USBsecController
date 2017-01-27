@@ -152,6 +152,13 @@ public class CardListActivity extends AppCompatActivity  {
         // 6.0以降はコメントアウトした処理をしないと初回はパーミッションがOFFになっています。
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,6 +252,12 @@ public class CardListActivity extends AppCompatActivity  {
                             public void run() {
 
                                 mRecyclerView.setAdapter(mAdapter);
+                                if(mAdapter.getItemCount()==0) {
+
+                                    mRecyclerView.setBackground(getDrawable(R.drawable.during_search));
+                                }else{
+                                    mRecyclerView.setBackground(getDrawable(R.color.cardview_light_background));
+                                }
                             }
                         });
                     }
