@@ -64,7 +64,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     private GoogleApiClient mLocationClient;
     LocationManager locationManager;
     HashMap<String,byte[]> acceptPinMap=new HashMap<>();
-    private final static int SDKVER_LOLLIPOP = 21;
     private final static int MESSAGE_NEW_RECEIVEDNUM = 0;
     private final static int MESSAGE_NEW_SENDNUM = 1;
     static BluetoothManager mBleManager;
@@ -185,11 +184,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             }
         }
         @Override
-        public void onCharacteristicWrite(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic,int a){
-            if(UUID.fromString("0000a021-0000-1000-8000-00805f9b34fb").equals(characteristic.getUuid())){
-            }
-        }
-        @Override
         public void onCharacteristicRead(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic,int a){
             byte[] value=characteristic.getValue();
             if(characteristic.getUuid().equals(UUID.fromString("0000a012-0000-1000-8000-00805f9b34fb"))){
@@ -211,12 +205,12 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             }}
         @Override
 
-        public void onServicesDiscovered(BluetoothGatt gatt,int status){
+        public void onServicesDiscovered(final BluetoothGatt gatt, int status){
             if(gatt.getService(UUID.fromString("0000a001-0000-1000-8000-00805f9b34fb"))!=null){
                 readCharacteristic(gatt.getDevice().getAddress(), "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
             }
             if(gatt.getService(UUID.fromString("0000a002-0000-1000-8000-00805f9b34fb"))!=null){
-                    sendAuth(gatt.getDevice().getAddress());
+                sendAuth(gatt.getDevice().getAddress());
 
             }
         }
@@ -310,15 +304,10 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
     private void scanNewDevice() {
         // OS ver.5.0以上ならBluetoothLeScannerを使用する.
-        if (Build.VERSION.SDK_INT >= SDKVER_LOLLIPOP) {
             this.startScanByBleScanner();
-        } else {
-            // デバイスの検出.
-            mBleAdapter.startLeScan(mScanCallback);
-        }
+
     }
 
-    @TargetApi(SDKVER_LOLLIPOP)
     private void startScanByBleScanner() {
         mBleScanner = mBleAdapter.getBluetoothLeScanner();
     }
@@ -335,8 +324,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         super.onDestroy();
     }
 
-    public MyService() {
-    }
 
     @Override
     public IBinder onBind(Intent intent) {
