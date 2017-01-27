@@ -218,7 +218,6 @@ public class CardListActivity extends AppCompatActivity  {
                         }
                         for (String key : deviceHash.keySet()) {
                             String dev = deviceHash.get(key);
-
                             if(deleteMap.containsKey(key)) {
                                 deleteMap.remove(key);
                             }
@@ -230,8 +229,11 @@ public class CardListActivity extends AppCompatActivity  {
                                     mAdapter.addAdapter("null  :  " + key);
                                 } else {
                                     mAdapter.addAdapter(dev + "  :  " + key);
-
                                 }
+                            }
+                            if(MyService.mBleScanner!=null) {
+                                 MyService.sendAuth(key);
+                                MyService.readCharacteristic(key, "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
                             }
                         }
                         for(String temp :deleteMap.keySet()){

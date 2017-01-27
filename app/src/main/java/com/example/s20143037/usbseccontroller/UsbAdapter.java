@@ -83,6 +83,7 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
                     String temp=text.getText().toString();
                     temp=CardListActivity.getMacAddress(temp);
                     String macAddress=CardListActivity.getMacAddress(temp);
+
                     try {
                         if (MyService.addAbleMap.get(macAddress)) {
 

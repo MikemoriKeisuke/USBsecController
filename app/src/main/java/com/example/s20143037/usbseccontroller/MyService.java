@@ -70,7 +70,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     static BluetoothManager mBleManager;
     private BluetoothAdapter mBleAdapter;
     private boolean mIsBluetoothEnable = false;
-    private BluetoothLeScanner mBleScanner;
+    static BluetoothLeScanner mBleScanner;
     static BluetoothGatt mBleGatt;
     static HashMap<String,Boolean> addAbleMap=new HashMap<>();
     static HashMap<String,byte[]> pinMap=new HashMap<>();
@@ -211,13 +211,12 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             }}
         @Override
 
-        public void onServicesDiscovered(BluetoothGatt gatt,int status){
-            if(gatt.getService(UUID.fromString("0000a001-0000-1000-8000-00805f9b34fb"))!=null){
+        public void onServicesDiscovered(BluetoothGatt gatt,int status) {
+            if (gatt.getService(UUID.fromString("0000a001-0000-1000-8000-00805f9b34fb")) != null) {
                 readCharacteristic(gatt.getDevice().getAddress(), "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
             }
-            if(gatt.getService(UUID.fromString("0000a002-0000-1000-8000-00805f9b34fb"))!=null){
-                    sendAuth(gatt.getDevice().getAddress());
-
+            if (gatt.getService(UUID.fromString("0000a004-0000-1000-8000-00805f9b34fb")) != null) {
+                readCharacteristic(gatt.getDevice().getAddress(), "0000a004-0000-1000-8000-00805f9b34fb", "0000a041-0000-1000-8000-00805f9b34fb");
             }
         }
     };
@@ -570,7 +569,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         int i=0;
 
         try {
-            service.deleteFile(mac+".txt");
             in = service.openFileInput(mac + ".txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             while ((lineBuffer = reader.readLine()) != null) {
