@@ -180,13 +180,7 @@ public class CardListActivity extends AppCompatActivity  {
                 found = true;
             }else{
                 final Intent intent=new Intent(this, MyService.class);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        startService(intent);
-                    }
-                });
-
+                startService(intent);
             }
         }
 
