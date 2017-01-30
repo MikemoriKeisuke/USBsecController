@@ -108,13 +108,13 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
                     boolean bool=onBoolean.get(getAdapterPosition());
                     String mac=CardListActivity.getMacAddress(text.getText().toString());
                     if(bool){
-                        int temp=1;
+                        int temp=0;
                         byte[] test=new byte[1];
                         test[0]=(byte)temp;
                         MyService.writeCharacteristic(mac,"0000a003-0000-1000-8000-00805f9b34fb","0000a031-0000-1000-8000-00805f9b34fb",test);
                         int i=0;
                     }else{
-                        int temp=0;
+                        int temp=1;
                         byte[] test=new byte[1];
                         test[0]=(byte)temp;
                         MyService.writeCharacteristic(mac,"0000a003-0000-1000-8000-00805f9b34fb","0000a031-0000-1000-8000-00805f9b34fb",test);

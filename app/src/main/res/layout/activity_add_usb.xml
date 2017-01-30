@@ -35,15 +35,6 @@
                 android:layout_gravity="center"
                 android:background="@drawable/ic_usb_plus"/>
 
-            <TextView
-                android:id="@+id/UsbNameView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="text"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:textSize="30sp" />
-
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -58,15 +49,6 @@
                     android:gravity="center_horizontal"
                     android:maxLength="5"/>
             </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="PINコードはあなたがUSBsecに\n接続するのに使用する番号です。"
-                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/AddUsbButton"
