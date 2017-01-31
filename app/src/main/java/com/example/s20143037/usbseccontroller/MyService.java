@@ -199,6 +199,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                 }else{
                     addAbleMap.put(gatt.getDevice().getAddress(),false);
                 }
+
             }
             if(UUID.fromString("0000a041-0000-1000-8000-00805f9b34fb").equals(characteristic.getUuid())){
                 byte temp=value[0];
@@ -283,12 +284,12 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         .build();
         // BLEが使用可能ならスキャン開始.
        while(true) {
+           try {
+               Thread.sleep(1000);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
             if (!(mBleAdapter == null )|| (!mBleAdapter.isEnabled())) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 this.scanNewDevice();
                 if(mBleScanner!=null) {
                     mBleScanner.startScan(scanFilterList, scanSettings, ble);
@@ -379,8 +380,10 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             BluetoothGattCharacteristic write = getCharacteristic(
                     sid, cid, gatt);
             byte[] message = comment;
-            write.setValue(message);
-            gatt.writeCharacteristic(write);
+            if(write!=null) {
+                write.setValue(message);
+                gatt.writeCharacteristic(write);
+            }
         }
     }
 
@@ -545,7 +548,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         OutputStream out;
 
         try {
-            out = openFileOutput("USBsec.txt",MODE_PRIVATE|MODE_APPEND);
+            out = openFileOutput("USBsec.txt",MODE_PRIVATE);
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(out,"UTF-8"));
             //追記する
             String pinS="";
