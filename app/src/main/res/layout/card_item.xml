@@ -53,7 +53,7 @@
             android:layout_weight="1">
 
             <Button
-                android:text="接続"
+                android:text="認証"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/IntentConnButton"
