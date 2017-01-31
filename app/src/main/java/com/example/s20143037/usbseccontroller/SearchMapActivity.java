@@ -14,7 +14,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.BufferedReader;
@@ -31,6 +34,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     private double latitude = 43.061105;
     private double longitude = 141.356432;
     private String caption = "2016/12/12";
+    Marker mMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,28 +72,38 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
         }
         for(String temp:position) {
             String work[] =temp.split(",", 0);
-                caption = work[0];
-                latitude = Double.parseDouble(work[1]);
+            caption = work[0];
+            latitude = Double.parseDouble(work[1]);
 
-                longitude = Double.parseDouble(work[2]);
-                LatLng location = new LatLng(latitude, longitude);
+            longitude = Double.parseDouble(work[2]);
+            LatLng location = new LatLng(latitude, longitude);
 
-                //        if (locationList != null) {
-                //            for (Location tempLoc : locationList) {
-                //                location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
-                //                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
-                //            }
-                //        }
-                mMap.addMarker(new MarkerOptions().position(location).title(caption));
+            //        if (locationList != null) {
+            //            for (Location tempLoc : locationList) {
+            //                location = new LatLng(tempLoc.getLatitude(), tempLoc.getLongitude());
+            //                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
+            //            }
+            //        }
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-                CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
-                mMap.moveCamera(cUpdate);
-                if (Build.VERSION.SDK_INT >= 23) {
-                    checkPermission();
-                }
+            //改造アイコン表示用
+            //BitmapDescriptor mIcon = BitmapDescriptorFactory.fromResource(R.mipmap.ic_pin2);
+
+            //addMarkerに追加してアイコンを表示
+            //.icon(mIcon)
+
+            mMarker = mMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(caption));
+            mMarker.showInfoWindow();
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+
+            CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
+            mMap.moveCamera(cUpdate);
+            if (Build.VERSION.SDK_INT >= 23) {
+                checkPermission();
             }
         }
+    }
 
 
 
