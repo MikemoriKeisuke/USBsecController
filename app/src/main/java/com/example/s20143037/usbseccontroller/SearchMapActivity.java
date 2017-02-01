@@ -14,7 +14,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.BufferedReader;
@@ -31,6 +34,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     private double latitude = 43.061105;
     private double longitude = 141.356432;
     private String caption = "2016/12/12";
+    Marker mMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +94,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 if (Build.VERSION.SDK_INT >= 23) {
                     checkPermission();
                 }
-            }
+        }
         if(locationList.size()>=3){
             //予測地点表示
             int i=1;
@@ -142,6 +146,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
             Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT);
         }
         }
+    }
 
 
 

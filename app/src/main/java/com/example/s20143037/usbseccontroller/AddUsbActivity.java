@@ -37,7 +37,7 @@ public class AddUsbActivity extends AppCompatActivity implements TextWatcher {
             bcomm[i]=(byte)temp;
         }
         Intent intent = new Intent(getApplication(), AddCompActivity.class);
-        startActivity(intent);
+        //startActivity(intent);
         intent = getIntent();
         String mac=intent.getStringExtra("macAddress");
         MyService.pinMap.put(mac,bcomm);
