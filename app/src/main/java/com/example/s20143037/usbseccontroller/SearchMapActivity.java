@@ -145,7 +145,6 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
         }else{
             Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT);
         }
-        }
     }
 
 
