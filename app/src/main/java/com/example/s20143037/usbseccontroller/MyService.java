@@ -341,7 +341,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
         ScanSettings scanSettings =
                 new ScanSettings.Builder()
-                        .setScanMode(ScanSettings.SCAN_MODE_LOW_POWER)
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                         .build();
         // BLEが使用可能ならスキャン開始.
        while(true) {

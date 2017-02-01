@@ -16,6 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -137,10 +138,19 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
             if(locationList.size()>=i+1) {
                 BitmapDescriptor mIcon = BitmapDescriptorFactory.fromResource(R.mipmap.ic_pin2);
                 LatLng location = new LatLng(resultLat, resultLng);
+                double r=(x1-resultLat)*(x1-resultLat)+(y1-resultLng)*(y1-resultLng);
+                r=r/2;
+                r=r*1300*1000*1000;
+
+                float zoom =(float) (r/10);
+                zoom=21-zoom;
                 mMap.addMarker(new MarkerOptions().position(location).icon(mIcon));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-
-                CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
+                CircleOptions circleOptions=new CircleOptions()
+                        .center(location)
+                        .radius(r);
+                mMap.addCircle(circleOptions);
+                CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, zoom);
                 mMap.moveCamera(cUpdate);
             }else{
                 Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT).show();
