@@ -86,11 +86,13 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 //                mMap.addMarker(new MarkerOptions().position(location).title(new Date(tempLoc.getTime()).toString()).snippet(caption));
                 //            }
                 //        }
-                mMap.addMarker(new MarkerOptions().position(location).title(caption));
+            mMarker = mMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(caption));
+            mMarker.showInfoWindow();
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-                CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
-                mMap.moveCamera(cUpdate);
+            CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
+            mMap.moveCamera(cUpdate);
                 if (Build.VERSION.SDK_INT >= 23) {
                     checkPermission();
                 }
@@ -133,17 +135,18 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
             double resultLat=((y1-y3)*(y1*y1 -y2*y2 +x1*x1 -x2*x2) -(y1-y2)*(y1*y1 -y3*y3 +x1*x1 -x3*x3)) / (2*(y1-y3)*(x1-x2)-2*(y1-y2)*(x1-x3));
             double resultLng=((x1-x3)*(x1*x1 -x2*x2 +y1*y1 -y2*y2) -(x1-x2)*(x1*x1 -x3*x3 +y1*y1 -y3*y3)) /(2*(x1-x3)*(y1-y2)-2*(x1-x2)*(y1-y3));
             if(locationList.size()>=i+1) {
-                LatLng location = new LatLng(resultLng, resultLat);
-                mMap.addMarker(new MarkerOptions().position(location));
+                BitmapDescriptor mIcon = BitmapDescriptorFactory.fromResource(R.mipmap.ic_pin2);
+                LatLng location = new LatLng(resultLat, resultLng);
+                mMap.addMarker(new MarkerOptions().position(location).icon(mIcon));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
 
                 CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
                 mMap.moveCamera(cUpdate);
             }else{
-                Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT);
+                Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT).show();
         }
     }
 
