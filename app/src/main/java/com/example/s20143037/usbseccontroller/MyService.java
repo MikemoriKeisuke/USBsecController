@@ -74,7 +74,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     static BluetoothGatt mBleGatt;
     static HashMap<String,Boolean> addAbleMap=new HashMap<>();
     static HashMap<String,byte[]> pinMap=new HashMap<>();
-    static Service service;
+    static MyService service;
     static Location location;
     static HashMap<String, BluetoothGatt> gattMap = new HashMap<>();
     private String mStrSendNum = "";
@@ -88,8 +88,8 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
             super.onScanResult(callbackType, result);
+            int a=result.getRssi();
             // スキャン中に見つかったデバイスに接続を試みる.第三引数には接続後に呼ばれるBluetoothGattCallbackを指定する.
-
             BluetoothDevice b = result.getDevice();
             mBleGatt = b.connectGatt(getApplicationContext(), true, mGattCallback);
 
@@ -107,10 +107,72 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         @Override
         public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
             // スキャン中に見つかったデバイスに接続を試みる.第三引数には接続後に呼ばれるBluetoothGattCallbackを指定する.
+
             mBleGatt = device.connectGatt(getApplicationContext(), false, mGattCallback);
+
         }
     };
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
+        @Override
+        public void onReadRemoteRssi(BluetoothGatt gatt,int rssi,int status){
+            // 接続が切れたらGATTを空にする.
+            if(rssi<0) {
+                if (mBleGatt != null) {
+                    ArrayList<Location> tempList = disconnList.get(mBleGatt.getDevice().getAddress());
+                    if (tempList == null) {
+                        tempList = new ArrayList<>();
+                    }
+                    //location ゲット＆Location 追加
+                    //MapControllerの取得
+                    //LocationManagerの取得
+                    //GPSから現在地の情報を取得
+                    if (ActivityCompat.checkSelfPermission(service, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(service, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+
+                    if (acceptPinMap.containsKey(gatt.getDevice().getAddress())) {
+                        Intent intent = new Intent(service, CardListActivity.class);
+                        Intent[] i = new Intent[1];
+                        i[0] = intent;
+                        PendingIntent pi = PendingIntent.getActivities(service, 0, i, 0);
+
+                        Notification notification = new Notification.Builder(service)
+                                .setContentTitle("USBsecが切断されました")
+                                .setContentText("")
+                                .setContentIntent(pi)
+                                .setSmallIcon(R.drawable.ic_sec)
+                                .setDefaults(Notification.DEFAULT_ALL)
+                                .setLocalOnly(true)
+                                .build();
+
+                        //削除できないように設定
+                        //        notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
+                        NotificationManager nm = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
+                        nm.notify(0, notification);
+
+                    }
+                    tempList.add(getLastLocation());
+                    disconnList.put(mBleGatt.getDevice().getAddress(), tempList);
+                    String macaddress = mBleGatt.getDevice().getAddress();
+                    PositionSave(macaddress, getLastLocation().getLatitude(), getLastLocation().getLongitude());
+
+
+                    deviceHash.remove(macaddress);
+                    gattMap.remove(macaddress);
+                    mBleGatt.close();
+                    mBleGatt = null;
+                }
+            }
+            mIsBluetoothEnable = false;
+        }
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
             // 接続状況が変化したら実行.
@@ -121,7 +183,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                 Vibrator v = (Vibrator)getSystemService(VIBRATOR_SERVICE);
                 long[] pattern = {10, 10, 100, 10};
                 v.vibrate(pattern, -1);
-
                 gatt.discoverServices();
                 BluetoothDevice b = gatt.getDevice();
                 deviceHash.put(b.getAddress(), b.getName());
@@ -345,10 +406,14 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
     }
 
     public static void readCharacteristic(String address, String sid, String cid) {
-        BluetoothGatt gatt = gattMap.get(address);
-        BluetoothGattService s = gatt.getService(UUID.fromString(sid));
-        BluetoothGattCharacteristic read = s.getCharacteristic(UUID.fromString(cid));
-        gatt.readCharacteristic(read);
+        try {
+            BluetoothGatt gatt = gattMap.get(address);
+            BluetoothGattService s = gatt.getService(UUID.fromString(sid));
+            BluetoothGattCharacteristic read = s.getCharacteristic(UUID.fromString(cid));
+            gatt.readCharacteristic(read);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Nullable
