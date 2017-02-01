@@ -66,6 +66,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 checkPermission();
             }
         }
+        ArrayList<LatLng> locationList=new ArrayList<>();
         for(String temp:position) {
             String work[] =temp.split(",", 0);
                 caption = work[0];
@@ -73,6 +74,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
 
                 longitude = Double.parseDouble(work[2]);
                 LatLng location = new LatLng(latitude, longitude);
+            locationList.add(location);
 
                 //        if (locationList != null) {
                 //            for (Location tempLoc : locationList) {
@@ -89,6 +91,56 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                     checkPermission();
                 }
             }
+        if(locationList.size()>=3){
+            //予測地点表示
+            int i=1;
+            //円方程式 x^2+y^2+xl+ym+n=0
+            LatLng loc=locationList.get(locationList.size()-i);
+            //一つ目の位置ログ-二つ目のログ
+            //(x^1-x2^2+y1^2-y2^2)
+
+            double x1=loc.latitude;
+            double y1=loc.longitude;
+            double x2=loc.latitude;
+            double y2=loc.longitude;
+//            x1=2;
+//            y1=1;
+//            x2=1;
+//            y2=2;
+            while(x1==x2&&y1==y2&&locationList.size()>=i+1){
+                i++;
+                loc=locationList.get(locationList.size()-i);
+                x2=loc.latitude;
+                y2=loc.longitude;
+            }
+
+            double x3=loc.latitude;
+            double y3=loc.longitude;
+//            x3=0;
+//            y3=1;
+            while((x1==x3&&y1== y3|| x2==x3&&y2== y3)&&locationList.size()>=i+1){
+                i++;
+                loc=locationList.get(locationList.size()-i);
+
+                x3=loc.latitude;
+                y3=loc.longitude;
+            }
+
+            double resultLat=((y1-y3)*(y1*y1 -y2*y2 +x1*x1 -x2*x2) -(y1-y2)*(y1*y1 -y3*y3 +x1*x1 -x3*x3)) / (2*(y1-y3)*(x1-x2)-2*(y1-y2)*(x1-x3));
+            double resultLng=((x1-x3)*(x1*x1 -x2*x2 +y1*y1 -y2*y2) -(x1-x2)*(x1*x1 -x3*x3 +y1*y1 -y3*y3)) /(2*(x1-x3)*(y1-y2)-2*(x1-x2)*(y1-y3));
+            if(locationList.size()>=i+1) {
+                LatLng location = new LatLng(resultLng, resultLat);
+                mMap.addMarker(new MarkerOptions().position(location));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+
+                CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, 14);
+                mMap.moveCamera(cUpdate);
+            }else{
+                Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT);
+            }
+        }else{
+            Toast.makeText(this,"データが少なく見つけられませんでした",Toast.LENGTH_SHORT);
+        }
         }
 
 
