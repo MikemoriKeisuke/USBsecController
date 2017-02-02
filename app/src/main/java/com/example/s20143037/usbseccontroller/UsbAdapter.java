@@ -61,8 +61,13 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
         if(boolean2==null){
             boolean2=false;
         }
-
-        holder.mSwitch.setChecked(boolean2);
+        String macAddress = CardListActivity.getMacAddress(onDataList.get(position));
+        if (MyService.addAbleMap.get(macAddress)!=null) {
+            if(!MyService.addAbleMap.get(macAddress)) {
+                holder.conButton.setText("ＰＩＮ登録済");
+            }
+        }
+            holder.mSwitch.setChecked(boolean2);
         holder.text.setText(data);
     }
 
@@ -78,12 +83,11 @@ public class UsbAdapter extends RecyclerView.Adapter<UsbAdapter.ViewHolder> {
             mSwitch=(Switch) v.findViewById(R.id.switch1);
             conButton=(Button)v.findViewById(R.id.IntentConnButton);
             conButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    @Override
+                    public void onClick(View v) {
                     String temp=text.getText().toString();
                     temp=CardListActivity.getMacAddress(temp);
                     String macAddress=CardListActivity.getMacAddress(temp);
-
                     try {
                         if (MyService.addAbleMap.get(macAddress)) {
 

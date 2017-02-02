@@ -26,7 +26,6 @@ public class ConnectionActivity extends AppCompatActivity implements TextWatcher
         editText.addTextChangedListener(this);
 
         textView = (TextView)findViewById(R.id.textView4);
-
     }
 
     public void intentConnComp(View v) {

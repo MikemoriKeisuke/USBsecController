@@ -91,6 +91,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             int a=result.getRssi();
             // スキャン中に見つかったデバイスに接続を試みる.第三引数には接続後に呼ばれるBluetoothGattCallbackを指定する.
             BluetoothDevice b = result.getDevice();
+
             mBleGatt = b.connectGatt(getApplicationContext(), true, mGattCallback);
 
             //
