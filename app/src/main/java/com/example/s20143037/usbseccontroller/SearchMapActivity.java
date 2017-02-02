@@ -2,6 +2,7 @@ package com.example.s20143037.usbseccontroller;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -141,6 +142,13 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 double r=(x1-resultLat)*(x1-resultLat)+(y1-resultLng)*(y1-resultLng);
                 r=r/2;
                 r=r*1300*1000*1000;
+                float[] results = new float[3];
+                Location.distanceBetween(
+                        x1,
+                        y1,
+                        resultLat,
+                        resultLng,
+                        results);
 
                 float zoom =(float) (r/10);
                 zoom=21-zoom;
@@ -148,7 +156,9 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
                 CircleOptions circleOptions=new CircleOptions()
                         .center(location)
-                        .radius(r);
+                        .strokeColor(Color.TRANSPARENT)
+                        .fillColor(R.color.icons)
+                        .radius(results[0]*1.1);
                 mMap.addCircle(circleOptions);
                 CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, zoom);
                 mMap.moveCamera(cUpdate);

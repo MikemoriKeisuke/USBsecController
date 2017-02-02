@@ -217,7 +217,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
                         Notification notification = new Notification.Builder(service)
                                 .setContentTitle("USBsecが切断されました")
-                                .setContentText("")
+                                .setContentText("USBsecが手元にあるか確認してください")
                                 .setContentIntent(pi)
                                 .setSmallIcon(R.drawable.ic_sec)
                                 .setDefaults(Notification.DEFAULT_ALL)
