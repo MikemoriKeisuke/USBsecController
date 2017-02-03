@@ -150,8 +150,11 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                         resultLng,
                         results);
 
-                float zoom =(float) (r/10);
-                zoom=21-zoom;
+                float zoom=(float)Math.log10(r/10);
+                if(zoom<0){
+                    zoom=0;
+                }
+                zoom=18-zoom;
                 mMap.addMarker(new MarkerOptions().position(location).icon(mIcon));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
                 CircleOptions circleOptions=new CircleOptions()

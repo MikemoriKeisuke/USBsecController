@@ -239,13 +239,13 @@ public class CardListActivity extends AppCompatActivity  {
                                 }
                             }
                             if(MyService.mBleScanner!=null) {
-                                MyService.readCharacteristic(key, "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
+                                MyService.sendAuth(key);
                                 try {
                                     Thread.sleep(1000);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                MyService.sendAuth(key);
+                                MyService.readCharacteristic(key, "0000a001-0000-1000-8000-00805f9b34fb", "0000a012-0000-1000-8000-00805f9b34fb");
                             }
                         }
                         for(String temp :deleteMap.keySet()){
@@ -345,6 +345,7 @@ public class CardListActivity extends AppCompatActivity  {
                             // TODO 自動生成されたメソッド・スタブ
                             CardListActivity.this.destory=true;
                             CardListActivity.this.finish();
+                            MyService.destory();
                             try {
                                 Thread.sleep(1000);
                             } catch (InterruptedException e) {

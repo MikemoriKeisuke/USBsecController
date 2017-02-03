@@ -88,8 +88,6 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
             super.onScanResult(callbackType, result);
-            int a=result.getRssi();
-            // スキャン中に見つかったデバイスに接続を試みる.第三引数には接続後に呼ばれるBluetoothGattCallbackを指定する.
             BluetoothDevice b = result.getDevice();
 
             mBleGatt = b.connectGatt(getApplicationContext(), true, mGattCallback);
@@ -117,12 +115,16 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         @Override
         public void onReadRemoteRssi(BluetoothGatt gatt,int rssi,int status){
             // 接続が切れたらGATTを空にする.
-            if(rssi<0) {
+            if(rssi<0){
+                rssi=rssi*-1;
+            }
+            if(rssi>100) {
                 if (mBleGatt != null) {
                     ArrayList<Location> tempList = disconnList.get(mBleGatt.getDevice().getAddress());
                     if (tempList == null) {
                         tempList = new ArrayList<>();
                     }
+                    gatt.disconnect();
                     //location ゲット＆Location 追加
                     //MapControllerの取得
                     //LocationManagerの取得
@@ -256,6 +258,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             byte[] value=characteristic.getValue();
             if(characteristic.getUuid().equals(UUID.fromString("0000a012-0000-1000-8000-00805f9b34fb"))){
                 byte temp=value[0];
+                gatt.readRemoteRssi();
                 if(temp==(byte)0){
                     addAbleMap.put(gatt.getDevice().getAddress(),true);
                 }else{
@@ -298,7 +301,10 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
             }
         }
     };
-
+    static void destory(){
+        service.stopSelf();
+        service.onDestroy();
+    }
     @Override
     public void onCreate() {
         service = this;
@@ -393,6 +399,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
         if (mBleGatt != null) {
             mBleGatt.close();
             mBleGatt = null;
+            mBleScanner.stopScan(ble);
         }
         super.onDestroy();
     }
