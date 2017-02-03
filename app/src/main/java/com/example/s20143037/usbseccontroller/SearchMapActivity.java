@@ -143,12 +143,7 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 r=r/2;
                 r=r*1300*1000*1000;
                 float[] results = new float[3];
-                Location.distanceBetween(
-                        x1,
-                        y1,
-                        resultLat,
-                        resultLng,
-                        results);
+                Location.distanceBetween(x1, y1, resultLat, resultLng, results);
 
                 float zoom=(float)Math.log10(r/10);
                 if(zoom<0){
@@ -156,11 +151,15 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
                 }
                 zoom=18-zoom;
                 mMap.addMarker(new MarkerOptions().position(location).icon(mIcon));
+
+                mMarker = mMap.addMarker(new MarkerOptions().position(location).icon(mIcon).title("予測紛失地点"));
+                mMarker.showInfoWindow();
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
                 CircleOptions circleOptions=new CircleOptions()
                         .center(location)
-                        .strokeColor(Color.TRANSPARENT)
-                        .fillColor(R.color.icons)
+                        .strokeColor(Color.rgb(252, 183, 169))
+                        .strokeWidth(2)
+                        .fillColor(Color.argb(127,252, 216, 169))
                         .radius(results[0]*1.1);
                 mMap.addCircle(circleOptions);
                 CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(location, zoom);
