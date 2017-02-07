@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="mobile-center-0.5.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.microsoft.azure.mobile/mobile-center/0.5.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.microsoft.azure.mobile/mobile-center/0.5.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.azure.mobile/mobile-center/0.5.0/b232fc49b332d12face09aee792f5fd5068363/mobile-center-0.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

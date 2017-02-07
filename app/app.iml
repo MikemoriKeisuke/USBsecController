@@ -110,6 +110,9 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/10.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/10.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.0.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.microsoft.azure.mobile/mobile-center-analytics/0.5.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.microsoft.azure.mobile/mobile-center-crashes/0.5.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.microsoft.azure.mobile/mobile-center/0.5.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
@@ -152,6 +155,8 @@
     <orderEntry type="library" exported="" scope="TEST" name="rules-0.5" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javax.annotation-api-1.2" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javax.inject-1" level="project" />
+    <orderEntry type="library" exported="" name="mobile-center-0.5.0" level="project" />
+    <orderEntry type="library" exported="" name="mobile-center-analytics-0.5.0" level="project" />
     <orderEntry type="library" exported="" name="support-compat-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="animated-vector-drawable-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-basement-10.0.1" level="project" />
@@ -162,6 +167,7 @@
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-25.0.1" level="project" />
+    <orderEntry type="library" exported="" name="mobile-center-crashes-0.5.0" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="android-android-25" level="project" />
   </component>
