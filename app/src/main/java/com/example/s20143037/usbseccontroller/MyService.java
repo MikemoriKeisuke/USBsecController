@@ -38,6 +38,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -140,7 +141,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         return;
                     }
 
-                    if (acceptPinMap.containsKey(gatt.getDevice().getAddress())) {
+                    if (PINCodeDecision(gatt.getDevice().getAddress())) {
                         Intent intent = new Intent(service, CardListActivity.class);
                         Intent[] i = new Intent[1];
                         i[0] = intent;
@@ -148,11 +149,13 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
 
                         Notification notification = new Notification.Builder(service)
                                 .setContentTitle("USBsecが切断されました")
+                                .setContentText("USBsecが手元にあるか確認してください")
                                 .setContentText("")
                                 .setContentIntent(pi)
                                 .setSmallIcon(R.drawable.ic_sec)
                                 .setDefaults(Notification.DEFAULT_ALL)
                                 .setLocalOnly(true)
+                                .setPriority(Notification.PRIORITY_HIGH)
                                 .build();
 
                         //削除できないように設定
@@ -212,7 +215,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                         return;
                     }
 
-                    if(acceptPinMap.containsKey(gatt.getDevice().getAddress())) {
+                    if(PINCodeDecision(gatt.getDevice().getAddress())) {
                         Intent intent = new Intent(service, CardListActivity.class);
                         Intent[] i = new Intent[1];
                         i[0] = intent;
@@ -222,6 +225,7 @@ public class MyService extends Service implements GoogleApiClient.ConnectionCall
                                 .setContentTitle("USBsecが切断されました")
                                 .setContentText("USBsecが手元にあるか確認してください")
                                 .setContentIntent(pi)
+                                .setPriority(Notification.PRIORITY_HIGH)
                                 .setSmallIcon(R.drawable.ic_sec)
                                 .setDefaults(Notification.DEFAULT_ALL)
                                 .setLocalOnly(true)
